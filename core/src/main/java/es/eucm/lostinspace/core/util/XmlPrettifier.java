@@ -1,10 +1,9 @@
+
 package es.eucm.lostinspace.core.util;
 
 import java.util.Stack;
 
-/**
- * @author mfreire
- */
+/** @author mfreire */
 public class XmlPrettifier {
 
 	private int maxCols = 20;
@@ -17,12 +16,12 @@ public class XmlPrettifier {
 	private Stack<String> tagStack = new Stack<String>();
 	private StringBuilder pretty = new StringBuilder();
 
-	public XmlPrettifier(int maxCols) {
+	public XmlPrettifier (int maxCols) {
 		this.maxCols = maxCols;
 		pretty = new StringBuilder();
 	}
 
-	public String getPrettyXml(String text) {
+	public String getPrettyXml (String text) {
 		this.text = text.trim();
 		pos = 0;
 		lastCol = 0;
@@ -33,15 +32,16 @@ public class XmlPrettifier {
 		return pretty.toString();
 	}
 
-	public char look() {
+	public char look () {
 		return text.charAt(pos);
 	}
 
-	public void skipWhite() {
-		while (isWhitespace(look())) pos++;
+	public void skipWhite () {
+		while (isWhitespace(look()))
+			pos++;
 	}
 
-	public void write(char c) {
+	public void write (char c) {
 		if (isWhitespace(c)) {
 			if (lastCol > maxCols || c == '\n') {
 				lastCol = 0;
@@ -59,7 +59,7 @@ public class XmlPrettifier {
 		}
 	}
 
-	public String writeText() {
+	public String writeText () {
 		StringBuilder written = new StringBuilder();
 		for (char c = look(); Character.isLetterOrDigit(c); c = look()) {
 			written.append(c);
@@ -69,17 +69,17 @@ public class XmlPrettifier {
 		return written.toString();
 	}
 
-	public void write() {
+	public void write () {
 		write(look());
 		pos++;
 	}
 
-	public void removeLastIndent() {
+	public void removeLastIndent () {
 		int prev = pretty.lastIndexOf(indentString);
 		pretty.replace(prev, prev + indentString.length(), "");
 	}
 
-	public void parse() {
+	public void parse () {
 		while (pos < text.length()) {
 			skipWhite();
 			assert (look() == '<');
@@ -139,8 +139,7 @@ public class XmlPrettifier {
 		}
 	}
 
-	boolean isWhitespace(char c) {
+	boolean isWhitespace (char c) {
 		return c == ' ' || c == '\t' || c == '\n' || c == '\r';
 	}
 }
-

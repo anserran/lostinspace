@@ -1,9 +1,11 @@
 <module rename-to='lostinspace'>
 	<inherits name='com.badlogic.gdx.backends.gdx_backends_gwt' />
+	<inherits name="aurelienribon.tweenengine"/>
+	<inherits name="es.eucm.ead.tools.gwt.xml"/>
+	<inherits name="es.eucm.gleaner.Tracker"/>
 
 	<source path='core'/>
 	<source path='html'/>
-
 	<public path="resources" />
 
 	<entry-point class='es.eucm.lostinspace.html.LostInSpaceHtml'/>

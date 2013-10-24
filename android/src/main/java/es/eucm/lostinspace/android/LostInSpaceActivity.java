@@ -1,3 +1,4 @@
+
 package es.eucm.lostinspace.android;
 
 import es.eucm.lostinspace.core.LostInSpace;
@@ -10,10 +11,10 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 public class LostInSpaceActivity extends AndroidApplication {
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-			super.onCreate(savedInstanceState);
-			AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-			config.useGL20 = true;
-			initialize(new LostInSpace(), config);
+	public void onCreate (Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+		config.useGL20 = true;
+		initialize(new LostInSpace(), config);
 	}
 }

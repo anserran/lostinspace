@@ -19,7 +19,7 @@ public class LostInSpaceDesktop {
 		PhaseScreen.xmlParser = new SaxXMLParser();
 		cfg.vSyncEnabled = false;
 		cfg.fullscreen = false;
-// cfg.setFromDisplayMode(LwjglApplicationConfiguration.getDesktopDisplayMode());
+		// cfg.setFromDisplayMode(LwjglApplicationConfiguration.getDesktopDisplayMode());
 		LostInSpace.gleanerTracker = new JerseyTracker();
 		new LwjglApplication(new LostInSpace(), cfg);
 	}

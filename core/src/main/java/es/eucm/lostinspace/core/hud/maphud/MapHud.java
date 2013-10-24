@@ -82,14 +82,14 @@ public class MapHud extends Group implements TweenCallback {
 	public void startGame () {
 		Tween.to(startScreen, ActorTweenAccessor.POSITION, 0.5f).ease(TweenEquations.easeOutCubic)
 			.target(PhaseScreen.SQUARE_SIZE, PhaseScreen.SQUARE_SIZE).setCallback(new TweenCallback() {
-			@Override
-			public void onEvent(int type, BaseTween<?> source) {
-				if (type == TweenCallback.COMPLETE) {
-					Tween.to(startScreen, ActorTweenAccessor.X, 1.0f).target(PhaseScreen.SQUARE_SIZE * PhaseScreen.GRID_COLUMNS)
+				@Override
+				public void onEvent (int type, BaseTween<?> source) {
+					if (type == TweenCallback.COMPLETE) {
+						Tween.to(startScreen, ActorTweenAccessor.X, 1.0f).target(PhaseScreen.SQUARE_SIZE * PhaseScreen.GRID_COLUMNS)
 							.start(PhaseScreen.tweenManager);
+					}
 				}
-			}
-		}).delay(0.5f).start(PhaseScreen.tweenManager);
+			}).delay(0.5f).start(PhaseScreen.tweenManager);
 	}
 
 	public void showPhaseResults () {
@@ -128,7 +128,7 @@ public class MapHud extends Group implements TweenCallback {
 		Tween.to(gameOverScreen, ActorTweenAccessor.X, 0.5f).ease(TweenEquations.easeOutCubic).target(PhaseScreen.SQUARE_SIZE)
 			.setCallback(new TweenCallback() {
 				@Override
-				public void onEvent(int type, BaseTween<?> source) {
+				public void onEvent (int type, BaseTween<?> source) {
 					if (type == TweenCallback.COMPLETE) {
 						Tween.to(gameOverScreen, ActorTweenAccessor.POSITION, 1.0f).target(0.0f, 0.0f).start(PhaseScreen.tweenManager);
 					}
@@ -145,9 +145,9 @@ public class MapHud extends Group implements TweenCallback {
 		Tween.to(scoreLabel, ActorTweenAccessor.SCORE, 1.5f).setUserData(scoreLabel).target(y + PhaseScreen.SQUARE_SIZE / 2, 0.0f)
 			.setCallback(new TweenCallback() {
 				@Override
-				public void onEvent(int type, BaseTween<?> source) {
-					((Actor) source.getUserData()).remove();
-					labelsPool.free((Label) source.getUserData());
+				public void onEvent (int type, BaseTween<?> source) {
+					((Actor)source.getUserData()).remove();
+					labelsPool.free((Label)source.getUserData());
 				}
 			}).start(PhaseScreen.tweenManager);
 	}

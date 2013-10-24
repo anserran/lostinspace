@@ -32,7 +32,7 @@
 		<!-- Tween Engine -->
 		<dependency>
 			<groupId>aurelienribon</groupId>
-			<artifactId>tweenengine-api</artifactId>
+			<artifactId>tweenengine</artifactId>
 			<version>1</version>
 		</dependency>
 	</dependencies>
