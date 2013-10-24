@@ -1,7 +1,9 @@
+
 package es.eucm.lostinspace.core;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
+
 import es.eucm.ead.tools.xml.XMLNode;
 import es.eucm.lostinspace.core.actions.AbstractAction;
 import es.eucm.lostinspace.core.actors.AbstractActor;
@@ -13,7 +15,7 @@ import es.eucm.lostinspace.core.parsers.PhaseCreator;
 import es.eucm.lostinspace.core.parsers.scripts.ScriptStep;
 import es.eucm.lostinspace.core.screens.PhaseScreen;
 
-public class PhaseManager /*implements XMLParser.ErrorHandler*/ {
+public class PhaseManager /* implements XMLParser.ErrorHandler */{
 
 	public static final int IN_TITLE = 0, IN_CUTSCENE = 3, IN_PHASE = 1, IN_RESULTS = 2;
 
@@ -43,32 +45,24 @@ public class PhaseManager /*implements XMLParser.ErrorHandler*/ {
 
 	private XMLNode currentPhaseDef;
 
-	/**
-	 * If the player is in the title screen
-	 */
+	/** If the player is in the title screen */
 	private int state;
 
-	/**
-	 * Time for the restart
-	 */
+	/** Time for the restart */
 	private float restartTime;
 
-	/**
-	 * Error message
-	 */
+	/** Error message */
 	private String errorMessage;
 
-	public PhaseManager() {
+	public PhaseManager () {
 		idsForExits = new Array<String>();
 		actionsCreator = LostInSpace.actionsCreator;
 		phaseCreator = LostInSpace.phaseCreator;
 		state = IN_TITLE;
 	}
 
-	/**
-	 * Loads the first phase
-	 */
-	public void loadFirstPhase() {
+	/** Loads the first phase */
+	public void loadFirstPhase () {
 		PhaseScreen.mapHud.startGame();
 		loadPhase("phase1");
 		PhaseScreen.levelManager.upLevel(LevelManager.Abilities.ACTIONS);
@@ -76,12 +70,10 @@ public class PhaseManager /*implements XMLParser.ErrorHandler*/ {
 		PhaseScreen.communicator.addMessage(null, null);
 	}
 
-	/**
-	 * Loads the phase with the given id
-	 *
-	 * @param id the phase id
-	 */
-	public void loadPhase(String id) {
+	/** Loads the phase with the given id
+	 * 
+	 * @param id the phase id */
+	public void loadPhase (String id) {
 		PhaseScreen.communicator.addMessage(null, "");
 		LostInSpace.tracker.startPhase(id.equals(currentPhaseId), id);
 		state = IN_PHASE;
@@ -113,17 +105,15 @@ public class PhaseManager /*implements XMLParser.ErrorHandler*/ {
 		this.currentPhaseId = id;
 	}
 
-	public void endGame() {
+	public void endGame () {
 		PhaseScreen.mapHud.endGame();
 		LostInSpace.tracker.endGame();
 	}
 
-	/**
-	 * Detects if the phase has finished
-	 *
-	 * @param delta seconds since last update
-	 */
-	public void act(float delta) {
+	/** Detects if the phase has finished
+	 * 
+	 * @param delta seconds since last update */
+	public void act (float delta) {
 		if (currentStep != null && currentStep.isDone()) {
 			if (scriptSteps.size > 0) {
 				currentStep = scriptSteps.removeIndex(0);
@@ -157,18 +147,17 @@ public class PhaseManager /*implements XMLParser.ErrorHandler*/ {
 		}
 	}
 
-	/**
-	 * Some actor reached an exit
-	 *
+	/** Some actor reached an exit
+	 * 
 	 * @param actor the actor
-	 * @return if the actor have to be teleported
-	 */
-	public boolean exit(Actor actor) {
+	 * @return if the actor have to be teleported */
+	public boolean exit (Actor actor) {
 		if (actor != null) {
 			String name = actor.getName();
 			if (idsForExits.removeValue(name, false)) {
 				if (state == IN_PHASE && Ship.isMainCharacter(name)) {
-					PhaseScreen.levelManager.addPoints(EXIT_POINTS, actor.getX() + actor.getOriginX(), actor.getY() + actor.getOriginY());
+					PhaseScreen.levelManager.addPoints(EXIT_POINTS, actor.getX() + actor.getOriginX(),
+						actor.getY() + actor.getOriginY());
 				}
 				return true;
 			}
@@ -176,19 +165,15 @@ public class PhaseManager /*implements XMLParser.ErrorHandler*/ {
 		return false;
 	}
 
-	/**
-	 * Sets the id for the next phase
-	 *
-	 * @param nextPhaseId next phase id
-	 */
-	public void setNextPhaseId(String nextPhaseId) {
+	/** Sets the id for the next phase
+	 * 
+	 * @param nextPhaseId next phase id */
+	public void setNextPhaseId (String nextPhaseId) {
 		this.nextPhaseId = nextPhaseId;
 	}
 
-	/**
-	 * Loads next phase
-	 */
-	public void nextPhase() {
+	/** Loads next phase */
+	public void nextPhase () {
 		nextPhase = true;
 		int score = PhaseScreen.levelManager.getScore();
 		int instructions[] = PhaseScreen.levelManager.getInstructions();
@@ -198,22 +183,18 @@ public class PhaseManager /*implements XMLParser.ErrorHandler*/ {
 		LostInSpace.tracker.endPhase(score, totalScore, instructions);
 	}
 
-	/**
-	 * Restarts the phase
-	 */
-	public void restartPhase() {
+	/** Restarts the phase */
+	public void restartPhase () {
 		restartPhase = true;
 		restartTime = 1.0f;
 	}
 
-	/**
-	 * Parse commands and executes them
-	 *
+	/** Parse commands and executes them
+	 * 
 	 * @param xml the xml with the commands
-	 * @return if commands were correct
-	 */
-	public boolean sendCommands(String xml) {
-		if ("".equals(xml)){
+	 * @return if commands were correct */
+	public boolean sendCommands (String xml) {
+		if ("".equals(xml)) {
 			return false;
 		}
 		boolean error;
@@ -234,7 +215,8 @@ public class PhaseManager /*implements XMLParser.ErrorHandler*/ {
 				if (node.getNodeName().equals("start")) {
 					String nickname = node.getAttributeValue("name");
 					if (nickname != null && (nickname.equals("yournickname") || nickname.equals("anserran"))) {
-						PhaseScreen.communicator.addMessage("error", PhaseScreen.i18n("Invalid nickname. Try another one. Remember: <start name=\"yournickname\"/>"));
+						PhaseScreen.communicator.addMessage("error",
+							PhaseScreen.i18n("Invalid nickname. Try another one. Remember: <start name=\"yournickname\"/>"));
 						error = true;
 					} else {
 						PhaseScreen.console.clearHistory();
@@ -278,24 +260,23 @@ public class PhaseManager /*implements XMLParser.ErrorHandler*/ {
 			if (state == IN_PHASE && hasErrors()) {
 				PhaseScreen.communicator.addMessage("error", PhaseScreen.i18n(errorMessage));
 			} else if (state == IN_TITLE) {
-				PhaseScreen.communicator.addMessage("error", PhaseScreen.i18n("Invalid XML. Introduce <start name=\"yournickname\"/> (e.g. <start name=\"anserran\"/>)"));
+				PhaseScreen.communicator.addMessage("error",
+					PhaseScreen.i18n("Invalid XML. Introduce <start name=\"yournickname\"/> (e.g. <start name=\"anserran\"/>)"));
 			}
 		}
 		LostInSpace.tracker.xml(xml, error);
 		return !error;
 	}
 
-
-	public String getValidTarget(String target) {
-		return target != null && (idsForExits.contains(target.toLowerCase(), false) || Ship.isMainCharacter(target.toLowerCase())) ? target.toLowerCase() : Ship.CAPTAIN;
+	public String getValidTarget (String target) {
+		return target != null && (idsForExits.contains(target.toLowerCase(), false) || Ship.isMainCharacter(target.toLowerCase())) ? target
+			.toLowerCase() : Ship.CAPTAIN;
 	}
 
-	/**
-	 * Warn the phase manager about the destruction of an actor
-	 *
-	 * @param actor
-	 */
-	public void actorDestroyed(AbstractActor actor) {
+	/** Warn the phase manager about the destruction of an actor
+	 * 
+	 * @param actor */
+	public void actorDestroyed (AbstractActor actor) {
 		if (state == IN_PHASE && actor.getType().equals(Rock.TYPE)) {
 			PhaseScreen.levelManager.addPoints(ROCK_POINTS, actor.getX() + actor.getOriginX(), actor.getY() + actor.getOriginY());
 		}
@@ -312,28 +293,23 @@ public class PhaseManager /*implements XMLParser.ErrorHandler*/ {
 		}
 	}
 
-	public String getCurrentPhaseId() {
+	public String getCurrentPhaseId () {
 		return currentPhaseId;
 	}
 
-	/**
-	 * Clears the xml parser errors
-	 */
-	private void clearErrors() {
+	/** Clears the xml parser errors */
+	private void clearErrors () {
 		this.errorMessage = null;
 	}
 
-	/**
-	 * Checks if there are xml parser errors
-	 *
-	 * @return if there are errors
-	 */
-	private boolean hasErrors() {
+	/** Checks if there are xml parser errors
+	 * 
+	 * @return if there are errors */
+	private boolean hasErrors () {
 		return this.errorMessage != null;
 	}
 
-
-	public void error(String message) {
+	public void error (String message) {
 		this.errorMessage = message;
 	}
 }

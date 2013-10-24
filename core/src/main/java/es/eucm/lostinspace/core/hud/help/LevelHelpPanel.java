@@ -1,7 +1,9 @@
+
 package es.eucm.lostinspace.core.hud.help;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+
 import es.eucm.lostinspace.core.LevelManager;
 import es.eucm.lostinspace.core.screens.PhaseScreen;
 
@@ -14,7 +16,7 @@ public class LevelHelpPanel extends Table {
 
 	private int level;
 
-	public LevelHelpPanel(LevelManager.Abilities a, int level, int width){
+	public LevelHelpPanel (LevelManager.Abilities a, int level, int width) {
 		this.level = level;
 		String[] explanations = a.getExplanations(level);
 		title = new Label(PhaseScreen.i18n("Level ") + (level + 1) + PhaseScreen.i18n(" blocked"), HelpPanel.text);
@@ -36,8 +38,8 @@ public class LevelHelpPanel extends Table {
 		this.add(example).center().width(width);
 	}
 
-	public void setVisible( boolean visible ){
-		title.setText(PhaseScreen.i18n("Level ") + (level + 1) + ( !visible ? PhaseScreen.i18n(" blocked") : ""));
+	public void setVisible (boolean visible) {
+		title.setText(PhaseScreen.i18n("Level ") + (level + 1) + (!visible ? PhaseScreen.i18n(" blocked") : ""));
 		dtd.setVisible(visible);
 		summary.setVisible(visible);
 		example.setVisible(visible);

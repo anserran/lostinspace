@@ -1,3 +1,4 @@
+
 package es.eucm.lostinspace.core.actors;
 
 import com.badlogic.gdx.graphics.Color;
@@ -14,12 +15,12 @@ public class Bullet extends AbstractActor {
 
 	private float speed = PhaseScreen.SQUARE_SIZE * 5;
 
-	public Bullet() {
+	public Bullet () {
 		// Bullets doesn't receive a name. They're never going to be referenced
 	}
 
 	@Override
-	public void reset() {
+	public void reset () {
 		super.reset();
 		this.setName("bullet");
 		this.setDestroyer(true);
@@ -27,11 +28,11 @@ public class Bullet extends AbstractActor {
 		this.setColor(Color.BLACK);
 	}
 
-	public void setDirection(Vector2 direction) {
+	public void setDirection (Vector2 direction) {
 		this.direction = direction;
 	}
 
-	public void act(float delta) {
+	public void act (float delta) {
 		this.setX(this.getX() + delta * speed * direction.x);
 		this.setY(this.getY() + delta * speed * direction.y);
 		// Remove bullet if it's out of the map
@@ -42,42 +43,42 @@ public class Bullet extends AbstractActor {
 	}
 
 	@Override
-	public String getImage() {
+	public String getImage () {
 		return "bullet.png";
 	}
 
 	@Override
-	public float getSpriteWidth() {
+	public float getSpriteWidth () {
 		return SCALE;
 	}
 
 	@Override
-	public float getSpriteHeight() {
+	public float getSpriteHeight () {
 		return SCALE;
 	}
 
 	@Override
-	public BodyType getBodyType() {
+	public BodyType getBodyType () {
 		return BodyType.CIRCLE;
 	}
 
 	@Override
-	public String getType() {
+	public String getType () {
 		return TYPE;
 	}
 
 	@Override
-	public float getCollisionWidth() {
+	public float getCollisionWidth () {
 		return SCALE;
 	}
 
 	@Override
-	public float getCollisionHeight() {
+	public float getCollisionHeight () {
 		return SCALE;
 	}
 
 	@Override
-	public void beginDestroy() {
+	public void beginDestroy () {
 		endDestroy();
 	}
 

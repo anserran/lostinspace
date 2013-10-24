@@ -1,3 +1,4 @@
+
 package es.eucm.lostinspace.core.actors;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -13,87 +14,88 @@ public class Rock extends AbstractActor {
 	private float extraRot = 0.0f;
 
 	@Override
-	public void reset(){
+	public void reset () {
 		super.reset();
 		this.setInvincible(false);
 		this.setDestroyer(true);
-		rotationSpeed = (float) Math.random() * 200.0f - 100.0f;
+		rotationSpeed = (float)Math.random() * 200.0f - 100.0f;
 		extraRot = 0.0f;
 	}
 
-	public int getRadius() {
+	public int getRadius () {
 		return radius;
 	}
 
-	public void setRadius(int radius) {
+	public void setRadius (int radius) {
 		this.radius = radius;
 	}
 
 	@Override
-	public String getImage() {
+	public String getImage () {
 		return "rocks.png";
 	}
 
 	@Override
-	public float getSpriteWidth() {
+	public float getSpriteWidth () {
 		return PhaseScreen.SQUARE_SIZE * radius;
 	}
 
 	@Override
-	public float getSpriteHeight() {
+	public float getSpriteHeight () {
 		return PhaseScreen.SQUARE_SIZE * radius;
 	}
 
 	@Override
-	public BodyType getBodyType() {
+	public BodyType getBodyType () {
 		return BodyType.CIRCLE;
 	}
 
 	@Override
-	public float getCollisionWidth() {
+	public float getCollisionWidth () {
 		return PhaseScreen.SQUARE_SIZE * radius * 0.9f;
 	}
 
 	@Override
-	public float getCollisionHeight() {
+	public float getCollisionHeight () {
 		return PhaseScreen.SQUARE_SIZE * radius * 0.9f;
 	}
 
-	public void setType(String type) {
+	public void setType (String type) {
 		this.type = type;
 		setInvincible(type.equals("black"));
 	}
 
 	@Override
-	public void act(float delta) {
+	public void act (float delta) {
 		super.act(delta);
 		extraRot += rotationSpeed * delta;
 	}
 
 	@Override
-	protected void setSpriteTransformations(Sprite sprite) {
+	protected void setSpriteTransformations (Sprite sprite) {
 		super.setSpriteTransformations(sprite);
 		sprite.setRotation(this.getRotation() + extraRot);
 	}
 
 	@Override
-	public void beginDestroy() {
+	public void beginDestroy () {
 		super.beginDestroy();
 		this.setColor(1.0f, 0.7f, 0.7f, 1.0f);
 	}
 
 	@Override
-	public void setSprite(Sprite sprite) {
+	public void setSprite (Sprite sprite) {
 		super.setSprite(sprite);
 		int size = sprite.getTexture().getWidth() / 2;
 		int x = 0;
-		if ( type.equals("white")){
+		if (type.equals("white")) {
 			x = size;
 		}
 		sprite.setRegion(x, 0, size, size);
 	}
+
 	@Override
-	public String getType() {
+	public String getType () {
 		return TYPE;
 	}
 }

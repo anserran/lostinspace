@@ -1,9 +1,11 @@
+
 package es.eucm.lostinspace.core.parsers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
+
 import es.eucm.ead.tools.xml.XMLNode;
 import es.eucm.lostinspace.core.LevelManager;
 import es.eucm.lostinspace.core.LostInSpace;
@@ -15,28 +17,25 @@ import es.eucm.lostinspace.core.screens.PhaseScreen;
 
 public class PhaseCreator extends Parser {
 
+	public static final String TYPE = "t", X = "x", Y = "y", NAME = "n", ROTATION = "r", WIDTH = "w", HEIGHT = "h", SIZE = "s",
+		VISIBLE = "v", HIDDEN = "hidden", IMAGE = "i", TX = "tx", TY = "ty", TW = "tw", TH = "th";
 
-	public static final String TYPE = "t", X = "x", Y = "y", NAME = "n",
-			ROTATION = "r", WIDTH = "w", HEIGHT = "h", SIZE = "s", VISIBLE = "v", HIDDEN = "hidden", IMAGE = "i",
-			TX = "tx", TY = "ty", TW = "tw", TH ="th";
+	public static final String[] COMMON_IATT = new String[] {X, Y, NAME, ROTATION, VISIBLE};
 
-	public static final String[] COMMON_IATT = new String[]{X, Y, NAME, ROTATION, VISIBLE};
+	public static final String[] WALL_RATT = new String[] {WIDTH, HEIGHT};
+	public static final String[] ROCK_RATT = new String[] {TYPE, SIZE};
 
-	public static final String[] WALL_RATT = new String[]{WIDTH, HEIGHT};
-	public static final String[] ROCK_RATT = new String[]{TYPE, SIZE};
-
-	public static final String[] LEVELUP_RATT = new String[]{TYPE};
-	public static final String[] TRIGGER_IATT = new String[]{HIDDEN};
+	public static final String[] LEVELUP_RATT = new String[] {TYPE};
+	public static final String[] TRIGGER_IATT = new String[] {HIDDEN};
 
 	// Values
-	public static final String[] ROCK_TYPE = new String[]{"black", "white"};
+	public static final String[] ROCK_TYPE = new String[] {"black", "white"};
 
-	public static final String[] LEVELUP_TYPE = new String[]{"actions", "move",
-			"rotate", "shoot", "wait"};
+	public static final String[] LEVELUP_TYPE = new String[] {"actions", "move", "rotate", "shoot", "wait"};
 
 	private ActionsCreator actionsCreator;
 
-	public PhaseCreator(ActionsCreator actionsCreator) {
+	public PhaseCreator (ActionsCreator actionsCreator) {
 		this.actionsCreator = actionsCreator;
 		this.requiredAtts.put("wall", WALL_RATT);
 		this.requiredAtts.put("rock", ROCK_RATT);
@@ -46,18 +45,16 @@ public class PhaseCreator extends Parser {
 		this.attsValues.put(HIDDEN, BOOLEAN_TYPE);
 	}
 
-	/**
-	 * Creates the phase defined in the given node
-	 *
+	/** Creates the phase defined in the given node
+	 * 
 	 * @param root the node
-	 * @return the start script
-	 */
-	public Array<ScriptStep> createPhase(XMLNode root, Group map) {
+	 * @return the start script */
+	public Array<ScriptStep> createPhase (XMLNode root, Group map) {
 		Array<ScriptStep> steps = new Array<ScriptStep>();
 		// Remove actors from previous phase
 		for (Actor a : map.getChildren()) {
 			if (a instanceof AbstractActor) {
-				((AbstractActor) a).dispose();
+				((AbstractActor)a).dispose();
 			}
 		}
 		map.clear();
@@ -76,14 +73,11 @@ public class PhaseCreator extends Parser {
 		return steps;
 	}
 
-
-	/**
-	 * Creates an actor
-	 *
+	/** Creates an actor
+	 * 
 	 * @param n the node defining the actor
-	 * @return the actor
-	 */
-	private Actor createActor(XMLNode n) {
+	 * @return the actor */
+	private Actor createActor (XMLNode n) {
 		String name = n.getNodeName();
 		Actor a = null;
 		if (name.equals("ship")) {
@@ -110,11 +104,9 @@ public class PhaseCreator extends Parser {
 		return a;
 	}
 
-	/**
-	 * @param n the node
-	 * @return a level up
-	 */
-	private Actor createLevelUp(XMLNode n) {
+	/** @param n the node
+	 * @return a level up */
+	private Actor createLevelUp (XMLNode n) {
 		String type = getAttribute(n, TYPE);
 		LevelManager.Abilities a = LevelManager.Abilities.getAbility(type);
 		if (a == null) {
@@ -127,11 +119,9 @@ public class PhaseCreator extends Parser {
 		return null;
 	}
 
-	/**
-	 * @param node the node
-	 * @return a trigger
-	 */
-	private Actor createTrigger(XMLNode node) {
+	/** @param node the node
+	 * @return a trigger */
+	private Actor createTrigger (XMLNode node) {
 		Trigger trigger = PhaseScreen.obtain(Trigger.class);
 		boolean hidden = getBoolean(node, HIDDEN);
 		trigger.setHidden(hidden);
@@ -152,11 +142,9 @@ public class PhaseCreator extends Parser {
 		return trigger;
 	}
 
-	/**
-	 * @param n the node
-	 * @return a wall
-	 */
-	private Actor createWall(XMLNode n) {
+	/** @param n the node
+	 * @return a wall */
+	private Actor createWall (XMLNode n) {
 		int width = getInteger(n, WIDTH, -100, 100);
 		int height = getInteger(n, HEIGHT, -100, 100);
 		Wall wall = PhaseScreen.obtain(Wall.class);
@@ -165,11 +153,9 @@ public class PhaseCreator extends Parser {
 		return wall;
 	}
 
-	/**
-	 * @param n the node
-	 * @return a rock
-	 */
-	private Actor createRock(XMLNode n) {
+	/** @param n the node
+	 * @return a rock */
+	private Actor createRock (XMLNode n) {
 		int size = getInteger(n, SIZE, 1, PhaseScreen.GRID_COLUMNS);
 		Rock rock = PhaseScreen.obtain(Rock.class);
 		rock.setRadius(size);
@@ -184,27 +170,21 @@ public class PhaseCreator extends Parser {
 		return rock;
 	}
 
-	/**
-	 * @param n the node
-	 * @return an exit
-	 */
-	private Actor createExit(XMLNode n) {
+	/** @param n the node
+	 * @return an exit */
+	private Actor createExit (XMLNode n) {
 		return PhaseScreen.obtain(WormHole.class);
 	}
 
-	/**
-	 * @param n the node
-	 * @return a ship
-	 */
-	private Actor createShip(XMLNode n) {
+	/** @param n the node
+	 * @return a ship */
+	private Actor createShip (XMLNode n) {
 		return PhaseScreen.obtain(Ship.class);
 	}
 
-	/**
-	 * @param n n the node
-	 * @return an actor image
-	 */
-	private Actor createImage(XMLNode n) {
+	/** @param n n the node
+	 * @return an actor image */
+	private Actor createImage (XMLNode n) {
 		ImageActor actor = LostInSpace.pools.obtain(ImageActor.class);
 		String img = getAttribute(n, IMAGE);
 		Integer u = getInteger(n, TX, 0, 100);
@@ -218,13 +198,11 @@ public class PhaseCreator extends Parser {
 		return actor;
 	}
 
-	/**
-	 * Adds the necessary transformations to the actor, based on the data of the node. Position, rotation, actions
-	 *
+	/** Adds the necessary transformations to the actor, based on the data of the node. Position, rotation, actions
+	 * 
 	 * @param a the actor
-	 * @param n the node
-	 */
-	private void addTransformations(Actor a, XMLNode n) {
+	 * @param n the node */
+	private void addTransformations (Actor a, XMLNode n) {
 		int x = getInteger(n, X, -100, 100);
 		int y = getInteger(n, Y, -100, 100);
 		boolean visible = true;
@@ -242,13 +220,11 @@ public class PhaseCreator extends Parser {
 		addActions(a, n);
 	}
 
-	/**
-	 * Adds the initial actions to the actor
-	 *
-	 * @param a    the actor
-	 * @param node the node with the actions
-	 */
-	private void addActions(Actor a, XMLNode node) {
+	/** Adds the initial actions to the actor
+	 * 
+	 * @param a the actor
+	 * @param node the node with the actions */
+	private void addActions (Actor a, XMLNode node) {
 		for (XMLNode n : node.getChildren()) {
 			if (n.getNodeName().equals("actions")) {
 				AbstractAction action = actionsCreator.createActions(n);
@@ -257,14 +233,11 @@ public class PhaseCreator extends Parser {
 		}
 	}
 
-
-	/**
-	 * Creates the start script define by the node
-	 *
+	/** Creates the start script define by the node
+	 * 
 	 * @param node the node
-	 * @return a list with the start script
-	 */
-	private void createStartActions(XMLNode node, Array<ScriptStep> steps) {
+	 * @return a list with the start script */
+	private void createStartActions (XMLNode node, Array<ScriptStep> steps) {
 		steps.clear();
 		for (XMLNode n : node.getChildren()) {
 			ScriptStep step = new ScriptStep();

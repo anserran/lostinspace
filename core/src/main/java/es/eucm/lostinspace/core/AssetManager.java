@@ -1,3 +1,4 @@
+
 package es.eucm.lostinspace.core;
 
 import com.badlogic.gdx.Gdx;
@@ -29,31 +30,29 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 	private JsonReader jsonReader;
 	private String lang;
 
-	/**
-	 * Map holding how many columns (images) has each texture
-	 */
+	/** Map holding how many columns (images) has each texture */
 	private final Map<String, Integer> textureColumns;
 
-	public AssetManager() {
+	public AssetManager () {
 		jsonReader = new JsonReader();
 		strings = new HashMap<String, String>();
 		textureColumns = new HashMap<String, Integer>();
 	}
 
-	public void setImagesPath(String imagesPath) {
+	public void setImagesPath (String imagesPath) {
 		this.imagesPath = imagesPath;
 	}
 
 	@Override
-	public synchronized <T> T get(String fileName) {
+	public synchronized <T> T get (String fileName) {
 		return super.get(imagesPath + fileName);
 	}
 
-	public synchronized BitmapFont getFont(String fileName) {
+	public synchronized BitmapFont getFont (String fileName) {
 		return super.get(fontPath + fileName, BitmapFont.class);
 	}
 
-	public String getTextFile(String path) {
+	public String getTextFile (String path) {
 		FileHandle fh = Gdx.files.internal(path);
 
 		if (fh != null && fh.exists()) {
@@ -81,7 +80,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		return null;
 	}
 
-	public void loadLanguage(String lang) {
+	public void loadLanguage (String lang) {
 		strings.clear();
 		if (!lang.equals(DEFAULT_LANGUAGE)) {
 			JsonValue value = jsonReader.parse(Gdx.files.internal("strings/strings-" + lang + ".json"));
@@ -93,10 +92,11 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		}
 	}
 
-	public void loadAssets() {
-		String[] images = new String[]{"grid.png", "placeholder.png", "bullet.png", "textbox.png", "ship.png",
-				"wall.png", "warp.png", "hud.png", "comm.png", "rocks.png", "levelups.png", "trigger.png", "titlescreen.png", "endscreen.png", "helpbg.png", "balloon.png", "logo.png", "title.png", "xmledition.png"};
-		int[] columns = new int[]{16, 1, 1, 1, 1, 3, 1, 10, 5, 2, 5, 2, 1, 1, 1, 3, 2, 14, 3};
+	public void loadAssets () {
+		String[] images = new String[] {"grid.png", "placeholder.png", "bullet.png", "textbox.png", "ship.png", "wall.png",
+			"warp.png", "hud.png", "comm.png", "rocks.png", "levelups.png", "trigger.png", "titlescreen.png", "endscreen.png",
+			"helpbg.png", "balloon.png", "logo.png", "title.png", "xmledition.png"};
+		int[] columns = new int[] {16, 1, 1, 1, 1, 3, 1, 10, 5, 2, 5, 2, 1, 1, 1, 3, 2, 14, 3};
 
 		if (images.length != columns.length) {
 			Gdx.app.log("AssetManager", "Some image is missing its columns");
@@ -107,7 +107,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 			}
 		}
 
-		String[] fonts = new String[]{CONSOLE_FONT, COMM_FONT, NAME_FONT, HELP_FONT, SCORE_FONT};
+		String[] fonts = new String[] {CONSOLE_FONT, COMM_FONT, NAME_FONT, HELP_FONT, SCORE_FONT};
 		Gdx.app.log("Assets", "Loading assets");
 		String imagePath = "data/";
 		fontPath = "fonts/";
@@ -124,20 +124,20 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 			load(fontPath + f, BitmapFont.class);
 		}
 		finishLoading();
-		//loadLanguage(DEFAULT_LANGUAGE);
+		// loadLanguage(DEFAULT_LANGUAGE);
 		loadLanguage("ES");
 		Gdx.app.log("Assets", "Done.");
 	}
 
-	public String i18n(String text) {
+	public String i18n (String text) {
 		String translation = strings.get(text);
 		if (translation == null && !DEFAULT_LANGUAGE.equals(lang)) {
-			//Gdx.app.log("AssetManager", text + " has no translation in " + lang);
+			// Gdx.app.log("AssetManager", text + " has no translation in " + lang);
 		}
 		return translation == null ? text : translation;
 	}
 
-	public int getColumnsTexture(String texture) {
+	public int getColumnsTexture (String texture) {
 		return textureColumns.containsKey(texture) ? textureColumns.get(texture) : 1;
 	}
 }

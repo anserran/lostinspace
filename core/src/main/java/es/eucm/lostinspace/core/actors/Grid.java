@@ -1,3 +1,4 @@
+
 package es.eucm.lostinspace.core.actors;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -12,13 +13,13 @@ public class Grid extends Actor {
 
 	private TextureRegion textureRegion;
 
-	public Grid(){
+	public Grid () {
 		this.setName(ID);
-		textureRegion = new TextureRegion((Texture) PhaseScreen.assetManager.get("grid.png"));
+		textureRegion = new TextureRegion((Texture)PhaseScreen.assetManager.get("grid.png"));
 	}
 
 	@Override
-	public void draw(SpriteBatch batch, float parentAlpha) {
+	public void draw (SpriteBatch batch, float parentAlpha) {
 		batch.draw(textureRegion, 0, 0, PhaseScreen.STAGE_WIDTH, PhaseScreen.STAGE_HEIGHT);
 	}
 }

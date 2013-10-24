@@ -1,3 +1,4 @@
+
 package es.eucm.lostinspace.core;
 
 import com.badlogic.gdx.Gdx;
@@ -13,60 +14,60 @@ public class Pools {
 
 	private Map<Class<?>, Pool> pools;
 
-	public Pools() {
+	public Pools () {
 		pools = new HashMap<Class<?>, Pool>();
 		pools.put(Bullet.class, new Pool() {
 			@Override
-			protected Object newObject() {
+			protected Object newObject () {
 				return new Bullet();
 			}
 		});
 		pools.put(LevelUp.class, new Pool() {
 			@Override
-			protected Object newObject() {
+			protected Object newObject () {
 				return new LevelUp();
 			}
 		});
 		pools.put(Rock.class, new Pool() {
 			@Override
-			protected Object newObject() {
+			protected Object newObject () {
 				return new Rock();
 			}
 		});
 		pools.put(Ship.class, new Pool() {
 			@Override
-			protected Object newObject() {
+			protected Object newObject () {
 				return new Ship();
 			}
 		});
 		pools.put(Trigger.class, new Pool() {
 			@Override
-			protected Object newObject() {
+			protected Object newObject () {
 				return new Trigger();
 			}
 		});
 		pools.put(Wall.class, new Pool() {
 			@Override
-			protected Object newObject() {
+			protected Object newObject () {
 				return new Wall();
 			}
 		});
 		pools.put(WormHole.class, new Pool() {
 			@Override
-			protected Object newObject() {
+			protected Object newObject () {
 				return new WormHole();
 			}
 		});
 		pools.put(ImageActor.class, new Pool() {
 			@Override
-			protected Object newObject() {
+			protected Object newObject () {
 				return new ImageActor();
 			}
 		});
 		// Actions
 		pools.put(MoveAction.class, new Pool() {
 			@Override
-			protected Object newObject() {
+			protected Object newObject () {
 				Action a = new MoveAction();
 				a.setPool(this);
 				return a;
@@ -74,7 +75,7 @@ public class Pools {
 		});
 		pools.put(RotateAction.class, new Pool() {
 			@Override
-			protected Object newObject() {
+			protected Object newObject () {
 				Action a = new RotateAction();
 				a.setPool(this);
 				return a;
@@ -82,7 +83,7 @@ public class Pools {
 		});
 		pools.put(ShootAction.class, new Pool() {
 			@Override
-			protected Object newObject() {
+			protected Object newObject () {
 				Action a = new ShootAction();
 				a.setPool(this);
 				return a;
@@ -90,7 +91,7 @@ public class Pools {
 		});
 		pools.put(SpeakAction.class, new Pool() {
 			@Override
-			protected Object newObject() {
+			protected Object newObject () {
 				Action a = new SpeakAction();
 				a.setPool(this);
 				return a;
@@ -98,7 +99,7 @@ public class Pools {
 		});
 		pools.put(VisibleAction.class, new Pool() {
 			@Override
-			protected Object newObject() {
+			protected Object newObject () {
 				Action a = new VisibleAction();
 				a.setPool(this);
 				return a;
@@ -106,7 +107,7 @@ public class Pools {
 		});
 		pools.put(GhostAction.class, new Pool() {
 			@Override
-			protected Object newObject() {
+			protected Object newObject () {
 				Action a = new GhostAction();
 				a.setPool(this);
 				return a;
@@ -114,12 +115,12 @@ public class Pools {
 		});
 	}
 
-	public <T> T obtain(Class<T> clazz) {
+	public <T> T obtain (Class<T> clazz) {
 		Pool pool = pools.get(clazz);
 		if (pool != null) {
-			T object = (T) pool.obtain();
+			T object = (T)pool.obtain();
 			if (object instanceof Pool.Poolable) {
-				((Pool.Poolable) object).reset();
+				((Pool.Poolable)object).reset();
 			}
 			return object;
 		} else {
@@ -128,7 +129,7 @@ public class Pools {
 		}
 	}
 
-	public void free(Object o) {
+	public void free (Object o) {
 		Pool pool = pools.get(o.getClass());
 		if (pool != null) {
 			pool.free(o);
@@ -136,6 +137,5 @@ public class Pools {
 			Gdx.app.log("Pools", "No pool for class " + o.getClass());
 		}
 	}
-
 
 }

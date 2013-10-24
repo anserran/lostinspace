@@ -1,7 +1,9 @@
+
 package es.eucm.lostinspace.core.screens;
 
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenManager;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -10,6 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.*;
+
 import es.eucm.ead.tools.xml.XMLParser;
 import es.eucm.lostinspace.core.*;
 import es.eucm.lostinspace.core.actions.*;
@@ -71,7 +74,7 @@ public class PhaseScreen implements Screen {
 
 	public static Pools pools;
 
-	public PhaseScreen() {
+	public PhaseScreen () {
 		phaseManager = LostInSpace.phaseManager;
 		// Color to clear the background
 		pools = LostInSpace.pools;
@@ -98,7 +101,8 @@ public class PhaseScreen implements Screen {
 		mapHud.setX(CONSOLE_COLUMNS * SQUARE_SIZE);
 		console = new Console();
 		communicator.setY(PhaseScreen.SQUARE_SIZE * 6);
-		communicator.addMessage("info", PhaseScreen.i18n("Write <start name=\"nickname\"/>, replacing nickname with your name. Click the thunder to send it."));
+		communicator.addMessage("info",
+			PhaseScreen.i18n("Write <start name=\"nickname\"/>, replacing nickname with your name. Click the thunder to send it."));
 
 		stage.addActor(new Grid());
 		stage.addActor(realMap);
@@ -110,7 +114,6 @@ public class PhaseScreen implements Screen {
 		stage.addActor(communicator);
 		stage.addActor(console);
 
-
 		// Debug
 		if (debug) {
 			addDebug();
@@ -118,43 +121,44 @@ public class PhaseScreen implements Screen {
 
 	}
 
-	private void addDebug() {
+	private void addDebug () {
 
 		box2Drenderer = new Box2DDebugRenderer();
 		stage.addCaptureListener(new InputListener() {
 			@Override
-			public boolean keyDown(InputEvent event, int keycode) {
+			public boolean keyDown (InputEvent event, int keycode) {
 				Actor player = stage.getRoot().findActor("captain");
 				if (player != null) {
 					switch (keycode) {
-						case Input.Keys.UP:
-							ActionsCreator.Speed s = ( Gdx.input.isKeyPressed(Input.Keys.SHIFT_RIGHT) ? ActionsCreator.Speed.HIGH : ActionsCreator.Speed.NORMAL );
-							player.addAction(new MoveAction(1,s.getSpeedValue()));
-							break;
-						case Input.Keys.DOWN:
-							player.addAction(new MoveAction(-1));
-							break;
-						case Input.Keys.RIGHT:
-							player.addAction(new RotateAction(-90));
-							break;
-						case Input.Keys.LEFT:
-							player.addAction(new RotateAction(90));
-							break;
-						case Input.Keys.CONTROL_RIGHT:
-							player.addAction(new ShootAction());
-							break;
-						case Input.Keys.CONTROL_LEFT:
-							GhostAction b = new GhostAction();
-							b.setInvincible(true);
-							b.setTime(5.0f);
-							player.addAction(b);
-							break;
-						case Input.Keys.F3:
-							SpeakAction a = new SpeakAction();
-							a.setText("Hello world! Hello world! Hello world! Hello world! Hello world!");
-							a.setPosition(SpeakAction.Position.left);
-							player.addAction(a);
-							break;
+					case Input.Keys.UP:
+						ActionsCreator.Speed s = (Gdx.input.isKeyPressed(Input.Keys.SHIFT_RIGHT) ? ActionsCreator.Speed.HIGH
+							: ActionsCreator.Speed.NORMAL);
+						player.addAction(new MoveAction(1, s.getSpeedValue()));
+						break;
+					case Input.Keys.DOWN:
+						player.addAction(new MoveAction(-1));
+						break;
+					case Input.Keys.RIGHT:
+						player.addAction(new RotateAction(-90));
+						break;
+					case Input.Keys.LEFT:
+						player.addAction(new RotateAction(90));
+						break;
+					case Input.Keys.CONTROL_RIGHT:
+						player.addAction(new ShootAction());
+						break;
+					case Input.Keys.CONTROL_LEFT:
+						GhostAction b = new GhostAction();
+						b.setInvincible(true);
+						b.setTime(5.0f);
+						player.addAction(b);
+						break;
+					case Input.Keys.F3:
+						SpeakAction a = new SpeakAction();
+						a.setText("Hello world! Hello world! Hello world! Hello world! Hello world!");
+						a.setPosition(SpeakAction.Position.left);
+						player.addAction(a);
+						break;
 					}
 					return true;
 				}
@@ -164,44 +168,42 @@ public class PhaseScreen implements Screen {
 
 		stage.addCaptureListener(new InputListener() {
 			@Override
-			public boolean keyDown(InputEvent event, int keycode) {
+			public boolean keyDown (InputEvent event, int keycode) {
 				switch (keycode) {
-					case Input.Keys.F1:
-						console.sendCommands();
-						break;
-					case Input.Keys.F5:
-						phaseManager.restartPhase();
-						break;
-					case Input.Keys.F6:
-						phaseManager.nextPhase();
-						break;
-					case Input.Keys.F4:
-						debug = !debug;
-						break;
-					case Input.Keys.ESCAPE:
-						phaseManager.loadFirstPhase();
-						break;
-					case Input.Keys.F7:
-						levelManager.maxLevels();
-						break;
+				case Input.Keys.F1:
+					console.sendCommands();
+					break;
+				case Input.Keys.F5:
+					phaseManager.restartPhase();
+					break;
+				case Input.Keys.F6:
+					phaseManager.nextPhase();
+					break;
+				case Input.Keys.F4:
+					debug = !debug;
+					break;
+				case Input.Keys.ESCAPE:
+					phaseManager.loadFirstPhase();
+					break;
+				case Input.Keys.F7:
+					levelManager.maxLevels();
+					break;
 				}
 				return true;
 			}
 		});
 
-
 	}
 
 	@Override
-	public void dispose() {
+	public void dispose () {
 		world.dispose();
 		stage.dispose();
 		assetManager.dispose();
 	}
 
-
 	@Override
-	public void render(float delta) {
+	public void render (float delta) {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		float step = Math.min(delta, 1 / 30f);
 		tweenManager.update(step);
@@ -215,44 +217,44 @@ public class PhaseScreen implements Screen {
 	}
 
 	@Override
-	public void resize(int width, int height) {
+	public void resize (int width, int height) {
 	}
 
 	@Override
-	public void show() {
+	public void show () {
 		Gdx.input.setInputProcessor(stage);
 	}
 
 	@Override
-	public void hide() {
+	public void hide () {
 	}
 
 	@Override
-	public void pause() {
+	public void pause () {
 	}
 
 	@Override
-	public void resume() {
+	public void resume () {
 	}
 
-	public static <T> T obtain(Class<T> clazz){
+	public static <T> T obtain (Class<T> clazz) {
 		return pools.obtain(clazz);
 	}
 
-	public static void free(Object o) {
+	public static void free (Object o) {
 		pools.free(o);
 	}
 
-	public void initPhysicWorld() {
+	public void initPhysicWorld () {
 		world = new World(new Vector2(0.0f, 0.0f), true);
 		world.setContactListener(new SpaceContactListener());
 	}
 
-	public static String i18n(String s) {
+	public static String i18n (String s) {
 		return assetManager.i18n(s);
 	}
 
-	public static void msg(String msg) {
+	public static void msg (String msg) {
 		messageListener.msg(msg);
 	}
 

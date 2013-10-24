@@ -1,3 +1,4 @@
+
 package es.eucm.lostinspace.core.hud;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -6,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
+
 import es.eucm.lostinspace.core.LevelManager;
 import es.eucm.lostinspace.core.LostInSpace;
 import es.eucm.lostinspace.core.actors.ImageActor;
@@ -24,8 +26,7 @@ public class Console extends Group {
 
 	private boolean enable;
 
-
-	public Console() {
+	public Console () {
 		enable = true;
 		// XML history
 		history = new Array<String>();
@@ -48,7 +49,7 @@ public class Console extends Group {
 		prevActor.setHoverEffect(true);
 		prevActor.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				prevCommands();
 				return false;
 			}
@@ -62,7 +63,7 @@ public class Console extends Group {
 		prettyActor.setHoverEffect(true);
 		prettyActor.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				prettify();
 				return false;
 			}
@@ -76,7 +77,7 @@ public class Console extends Group {
 		nextActor.setX(PhaseScreen.SQUARE_SIZE * (PhaseScreen.CONSOLE_COLUMNS - 1));
 		nextActor.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				nextCommands();
 				return false;
 			}
@@ -89,7 +90,7 @@ public class Console extends Group {
 		sendActor.setX(PhaseScreen.SQUARE_SIZE * (PhaseScreen.CONSOLE_COLUMNS - 1));
 		sendActor.addListener(new ClickListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				sendCommands();
 				return false;
 			}
@@ -103,7 +104,7 @@ public class Console extends Group {
 		addHelpButtons();
 	}
 
-	private void addHelpButtons() {
+	private void addHelpButtons () {
 		int x = 0;
 		for (LevelManager.Abilities a : LevelManager.Abilities.values()) {
 			HelpPanel help = new HelpPanel(a);
@@ -116,7 +117,7 @@ public class Console extends Group {
 		}
 	}
 
-	public void sendCommands() {
+	public void sendCommands () {
 		if (enable && !interpreter.isError()) {
 			String xml = interpreter.getText();
 			boolean ok = PhaseScreen.phaseManager.sendCommands(xml);
@@ -137,7 +138,7 @@ public class Console extends Group {
 		}
 	}
 
-	public void prevCommands() {
+	public void prevCommands () {
 		if (enable) {
 			currentIndex = Math.max(0, currentIndex - 1);
 			if (history.size > currentIndex) {
@@ -147,7 +148,7 @@ public class Console extends Group {
 		}
 	}
 
-	public void nextCommands() {
+	public void nextCommands () {
 		if (enable) {
 			currentIndex = Math.max(0, Math.min(history.size - 1, currentIndex + 1));
 			if (history.size > currentIndex) {
@@ -157,7 +158,7 @@ public class Console extends Group {
 		}
 	}
 
-	public void prettify() {
+	public void prettify () {
 		if (enable) {
 			String text = interpreter.getText();
 			try {
@@ -170,16 +171,13 @@ public class Console extends Group {
 		}
 	}
 
-
-	public void setEnable(boolean enable) {
+	public void setEnable (boolean enable) {
 		interpreter.setEnable(enable);
 		this.enable = enable;
 	}
 
-	/**
-	 * Cleras the commands history
-	 */
-	public void clearHistory() {
+	/** Cleras the commands history */
+	public void clearHistory () {
 		history.clear();
 	}
 

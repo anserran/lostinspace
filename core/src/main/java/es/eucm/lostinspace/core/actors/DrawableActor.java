@@ -1,3 +1,4 @@
+
 package es.eucm.lostinspace.core.actors;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -7,7 +8,7 @@ public class DrawableActor extends Actor {
 
 	private Drawable drawable;
 
-	public DrawableActor(Drawable drawable) {
+	public DrawableActor (Drawable drawable) {
 		this.drawable = drawable;
 	}
 }

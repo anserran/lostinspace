@@ -1,3 +1,4 @@
+
 package es.eucm.lostinspace.core;
 
 import com.badlogic.gdx.Gdx;
@@ -9,10 +10,10 @@ import es.eucm.lostinspace.core.actors.AbstractActor;
 
 public class SpaceContactListener implements ContactListener {
 	@Override
-	public void beginContact(Contact contact) {
+	public void beginContact (Contact contact) {
 		if (contact.getFixtureA() != null && contact.getFixtureB() != null) {
-			AbstractActor a = (AbstractActor) contact.getFixtureA().getBody().getUserData();
-			AbstractActor b = (AbstractActor) contact.getFixtureB().getBody().getUserData();
+			AbstractActor a = (AbstractActor)contact.getFixtureA().getBody().getUserData();
+			AbstractActor b = (AbstractActor)contact.getFixtureB().getBody().getUserData();
 			if (a.isCheckCollissions() && a.isVisible() && b.isCheckCollissions() && b.isVisible()) {
 				a.beginContact(b);
 				b.beginContact(a);
@@ -24,10 +25,10 @@ public class SpaceContactListener implements ContactListener {
 	}
 
 	@Override
-	public void endContact(Contact contact) {
+	public void endContact (Contact contact) {
 		if (contact.getFixtureA() != null && contact.getFixtureB() != null) {
-			AbstractActor a = (AbstractActor) contact.getFixtureA().getBody().getUserData();
-			AbstractActor b = (AbstractActor) contact.getFixtureB().getBody().getUserData();
+			AbstractActor a = (AbstractActor)contact.getFixtureA().getBody().getUserData();
+			AbstractActor b = (AbstractActor)contact.getFixtureB().getBody().getUserData();
 			if (a.isCheckCollissions() && a.isVisible() && b.isCheckCollissions() && b.isVisible()) {
 				a.endContact(b);
 				b.endContact(a);
@@ -39,10 +40,10 @@ public class SpaceContactListener implements ContactListener {
 	}
 
 	@Override
-	public void preSolve(Contact contact, Manifold oldManifold) {
+	public void preSolve (Contact contact, Manifold oldManifold) {
 	}
 
 	@Override
-	public void postSolve(Contact contact, ContactImpulse impulse) {
+	public void postSolve (Contact contact, ContactImpulse impulse) {
 	}
 }

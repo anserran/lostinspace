@@ -1,3 +1,4 @@
+
 package es.eucm.lostinspace.core.actions;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -7,7 +8,9 @@ public class SpeakAction extends AbstractAction {
 
 	public static float TIME_PER_LETTER = 0.10f;
 
-	public enum Position { top, right, bottom, left };
+	public enum Position {
+		top, right, bottom, left
+	};
 
 	private boolean done;
 
@@ -17,30 +20,30 @@ public class SpeakAction extends AbstractAction {
 
 	private Position position;
 
-	public SpeakAction() {
+	public SpeakAction () {
 
 	}
 
-	public Position getPosition() {
+	public Position getPosition () {
 		return position;
 	}
 
-	public void setPosition(Position position) {
+	public void setPosition (Position position) {
 		this.position = position;
 	}
 
-	public String getText() {
+	public String getText () {
 		return text;
 	}
 
-	public void setText(String text) {
+	public void setText (String text) {
 		this.text = text;
 	}
 
 	@Override
-	public void setActor(Actor a) {
+	public void setActor (Actor a) {
 		if (a == null && this.actor instanceof AbstractActor) {
-			((AbstractActor) this.actor).speak("", position);
+			((AbstractActor)this.actor).speak("", position);
 		}
 		done = false;
 		time = text.length() * TIME_PER_LETTER;
@@ -48,7 +51,7 @@ public class SpeakAction extends AbstractAction {
 	}
 
 	@Override
-	public boolean act(float delta) {
+	public boolean act (float delta) {
 		if (time <= 0.0f) {
 			return true;
 		}
@@ -56,7 +59,7 @@ public class SpeakAction extends AbstractAction {
 
 		if (!done) {
 			if (actor instanceof AbstractActor) {
-				((AbstractActor) this.actor).speak(text, position);
+				((AbstractActor)this.actor).speak(text, position);
 			}
 			done = true;
 		}

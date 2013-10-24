@@ -1,3 +1,4 @@
+
 package es.eucm.lostinspace.core.hud.communicator;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -9,16 +10,16 @@ public class Portrait extends Actor {
 
 	private Texture texture;
 
-	public Portrait( ){
+	public Portrait () {
 		texture = PhaseScreen.assetManager.get("placeholder.png");
 	}
 
 	@Override
-	public void draw(SpriteBatch batch, float parentAlpha) {
+	public void draw (SpriteBatch batch, float parentAlpha) {
 		batch.draw(texture, getX(), getY(), getWidth(), getHeight());
 	}
 
-	public void setType(String name){
+	public void setType (String name) {
 
 	}
 }
