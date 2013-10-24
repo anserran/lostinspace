@@ -1,0 +1,37 @@
+<phase names="captain" next="phase8">
+	<wall x="0" y="0" w="1" h="9"/>
+	<wall x="0" y="8" w="11" h="1"/>
+	<wall x="10" y="0" w="1" h="9"/>
+	<wall x="2" y="0" w="10" h="1"/>
+	<wall x="2" y="0" w="1" h="7"/>
+	<wall x="2" y="6" w="7" h="1"/>
+	<wall x="8" y="2" w="1" h="5"/>
+	<wall x="4" y="2" w="5" h="1"/>
+	<wall x="4" y="2" w="1" h="3"/>
+	<wall x="4" y="4" w="3" h="1"/>
+	<exit x="5" y="3"/>
+	<rock x="6" y="3" n="rock" s="1" t="white" rotationSpeed="5.0"/>
+	<levelup t="shoot" x="1" y="3"/>
+	<trigger x="1" y="5">
+		<activate>
+			<actions idref="rock">
+				<move distance="1"/>
+				<rotate direction="ccw"/>
+				<move distance="2"/>
+				<rotate direction="ccw"/>
+				<move distance="4"/>
+				<rotate direction="ccw"/>
+				<move distance="4"/>
+				<rotate direction="ccw"/>
+				<move distance="6"/>
+				<rotate direction="ccw"/>
+				<move distance="6"/>
+				<rotate direction="ccw"/>
+				<move distance="8"/>
+				<rotate direction="ccw"/>
+				<move distance="8"/>
+			</actions>
+		</activate>
+	</trigger>
+	<ship n="captain" x="1" y="0" r="90"/>
+</phase>

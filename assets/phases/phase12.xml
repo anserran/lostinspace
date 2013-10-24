@@ -1,0 +1,37 @@
+<phase names="captain" next="phase13">
+	<exit x="10" y="0"/>
+	<wall x="0" y="1" w="4" h="4"/>
+	<wall x="0" y="6" w="4" h="3"/>
+	<wall x="7" y="5" w="4" h="4"/>
+	<wall x="7" y="1" w="4" h="3"/>
+	<wall x="5" y="0" w="1" h="8"/>
+	<rock n="rock1" t="black" x="0" y="5" s="1" rotationSpeed="0.5"/>
+	<trigger x="2" y="5">
+		<activate>
+			<actions idref="rock1" loop="false">
+				<move distance="3" speed="high"/>
+			</actions>
+		</activate>
+	</trigger>
+	<rock n="rock2" t="black" x="10" y="4" s="1" rotationSpeed="0.5" r="180"/>
+	<trigger x="8" y="4">
+		<activate>
+			<actions idref="rock2" loop="false">
+				<move distance="3" speed="high"/>
+			</actions>
+		</activate>
+	</trigger>
+	<ship n="carl" x="4" y="5" r="270">
+		<actions forever="true">
+			<shoot/>
+		</actions>
+	</ship>
+	<ship n="lenny" x="6" y="4" r="90">
+		<actions forever="true">
+			<shoot/>
+		</actions>
+	</ship>
+	<ship n="susan" x="9" y="4" r="180"/>
+	<ship n="ben" x="1" y="5" rotation="0"/>
+	<ship n="captain" x="0" y="0"/>
+</phase>

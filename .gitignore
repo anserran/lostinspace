@@ -1,0 +1,4 @@
+*.iml
+.settings
+android/libs/
+target/

@@ -1,0 +1,16 @@
+<phase names="captain" next="phase12">
+	<levelup t="actions" x="0" y="0"/>
+	<rock x="0" y="1" t="white" s="1" rotationSpeed="0.2"/>
+	<rock x="1" y="1" t="white" s="1" rotationSpeed="0.4"/>
+	<rock x="1" y="0" t="white" s="1" rotationSpeed="0.3"/>
+	<ship n="enemy" x="5" y="6" r="270">
+		<actions forever="true">
+			<shoot/>
+		</actions>
+	</ship>
+	<wall x="0" y="3" w="5" h="3"/>
+	<wall x="6" y="3" w="5" h="3"/>
+	<exit x="5" y="8"/>
+	<ship x="0" y="6" n="susan" />
+	<ship n="captain" x="10" y="0" r="180"/>
+</phase>

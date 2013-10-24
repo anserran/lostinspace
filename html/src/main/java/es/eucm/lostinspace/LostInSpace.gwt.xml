@@ -1,0 +1,12 @@
+<module rename-to='lostinspace'>
+	<inherits name='com.badlogic.gdx.backends.gdx_backends_gwt' />
+
+	<source path='core'/>
+	<source path='html'/>
+
+	<public path="resources" />
+
+	<entry-point class='es.eucm.lostinspace.html.LostInSpaceHtml'/>
+	<set-configuration-property name="gdx.assetpath" value="assets" />
+	<set-configuration-property name="gdx.assetoutputpath" value="html/target/webapp" />
+</module>

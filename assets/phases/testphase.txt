@@ -1,0 +1,8 @@
+p,player,0,0
+w,4,4,2,2
+r,rock1,10,10,black,2,1.0
+r,rock2,8,10,white,1,0.5
+e,exit1,0,0
+en,enemy1,0,1,180,
+a,actuator1,1,0
+l,0,3,move

@@ -1,0 +1,13 @@
+<phase names="captain,kate" next="phase3">
+	<wall x="0" y="0" h="9" w="5"/>
+	<wall x="4" y="0" w="9" h="3"/>
+	<wall x="6" y="2" w="7" h="8"/>
+	<exit x="5" y="8"/>
+	<levelup x="5" y="4" t="move"/>
+	<ship n="captain" x="5" y="3" r="90"/>
+    <ship n="kate" x="5" y="4" r="90">
+        <actions>
+            <move distance="10"/>
+        </actions>
+    </ship>
+</phase>

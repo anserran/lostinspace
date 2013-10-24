@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>es.e-ucm.lostinspace</groupId>
+		<artifactId>lostinspace</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>lostinspace-core</artifactId>
+	<packaging>jar</packaging>
+	<name>LostInSpace Core</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.badlogicgames.gdx</groupId>
+			<artifactId>gdx</artifactId>
+			<version>${gdx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>es.e-ucm.ead</groupId>
+			<artifactId>ead-tools</artifactId>
+			<version>2.0.1-SNAPSHOT</version>
+		</dependency>
+		<!-- GLEANER -->
+		<dependency>
+			<groupId>es.e-ucm.gleaner</groupId>
+			<artifactId>gleaner-tracker</artifactId>
+			<version>0.2-SNAPSHOT</version>
+		</dependency>
+		<!-- Tween Engine -->
+		<dependency>
+			<groupId>aurelienribon</groupId>
+			<artifactId>tweenengine-api</artifactId>
+			<version>1</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

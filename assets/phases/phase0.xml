@@ -1,0 +1,3 @@
+<phase names="captain" next="phase1">
+	<ship n="captain" x="5" y="3" r="90"/>
+</phase>

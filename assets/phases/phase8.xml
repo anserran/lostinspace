@@ -1,0 +1,26 @@
+<phase names="captain" next="phase9">
+	<wall x="0" y="2" h="6" w="5"/>
+	<wall x="6" y="2" h="6" w="5"/>
+	<exit x="8" y="8"/>
+	<rock t="black" s="1" x="5" y="7" rotationSpeed="2.4" r="270">
+		<actions forever="true">
+			<move distance="7" speed="slow"/>
+			<ghost time="1"/>
+			<rotate direction="cw"/>
+			<rotate direction="cw"/>
+			<move distance="7" speed="high"/>
+			<rotate direction="cw"/>
+			<rotate direction="cw"/>
+		</actions>
+	</rock>
+	<rock t="white" x="6" y="0" s="1" rotationSpeed="0.15"/>
+	<rock t="white" x="7" y="0" s="1" rotationSpeed="0.4"/>
+	<rock t="white" x="8" y="0" s="1" rotationSpeed="0.2"/>
+	<rock t="white" x="9" y="0" s="1" rotationSpeed="0.25"/>
+	<rock t="white" x="6" y="1" s="1" rotationSpeed="1.0"/>
+	<rock t="white" x="7" y="1" s="1" rotationSpeed="0.9"/>
+	<rock t="white" x="8" y="1" s="1" rotationSpeed="0.4"/>
+	<rock t="white" x="9" y="1" s="1" rotationSpeed="0.6"/>
+	<levelup t="move" x="10" y="1"/>
+	<ship n="captain" x="0" y="1"/>
+</phase>

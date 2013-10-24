@@ -1,0 +1,44 @@
+<phase names="captain" next="phase10">
+	<exit x="5" y="8"/>
+	<rock x="6" y="0" s="1" t="white" rotationSpeed="0.2"/>
+	<rock x="7" y="0" s="1" t="black" rotationSpeed="0.2"/>
+	<rock x="8" y="0" s="1" t="white" rotationSpeed="0.2"/>
+	<rock x="9" y="0" s="1" t="black" rotationSpeed="0.2"/>
+	<rock x="10" y="0" s="1" t="white" rotationSpeed="0.2"/>
+	<rock x="6" y="1" s="1" t="black" rotationSpeed="0.2"/>
+	<rock x="7" y="1" s="1" t="white" rotationSpeed="0.2"/>
+	<rock x="8" y="1" s="1" t="black" rotationSpeed="0.2"/>
+	<rock x="9" y="1" s="1" t="white" rotationSpeed="0.2"/>
+	<rock x="10" y="1" s="1" t="black" rotationSpeed="0.2"/>
+	<rock x="0" y="0" s="1" t="white" rotationSpeed="0.2"/>
+	<rock x="1" y="0" s="1" t="black" rotationSpeed="0.2"/>
+	<rock x="2" y="0" s="1" t="white" rotationSpeed="0.2"/>
+	<rock x="3" y="0" s="1" t="black" rotationSpeed="0.2"/>
+	<rock x="4" y="0" s="1" t="white" rotationSpeed="0.2"/>
+	<rock x="0" y="1" s="1" t="black" rotationSpeed="0.2"/>
+	<rock x="1" y="1" s="1" t="white" rotationSpeed="0.2"/>
+	<rock x="2" y="1" s="1" t="black" rotationSpeed="0.2"/>
+	<rock x="3" y="1" s="1" t="white" rotationSpeed="0.2"/>
+	<rock x="4" y="1" s="1" t="black" rotationSpeed="0.2"/>
+	<ship n="enemy" x="10" y="4" r="180">
+		<actions forever="true">
+			<shoot/>
+		</actions>
+	</ship>
+	<ship n="enemy" x="10" y="6" r="180">
+		<actions forever="true">
+			<shoot/>
+		</actions>
+	</ship>
+	<ship n="enemy" x="0" y="3">
+		<actions forever="true">
+			<shoot/>
+		</actions>
+	</ship>
+	<ship n="enemy" x="0" y="5">
+		<actions forever="true">
+			<shoot/>
+		</actions>
+	</ship>
+	<ship n="captain" x="5" y="0" r="90"/>
+</phase>

@@ -1,0 +1,14 @@
+<phase names="captain" next="end">
+	<wall x="0" y="0" w="11" h="4"/>
+	<wall x="0" y="5" w="11" h="4"/>
+	<levelup t="wait" x="1" y="4"/>
+	<rock t="black" x="8" y="4" s="1" rotationSpeed="2" r="180">
+		<actions forever="true">
+			<move distance="6"/>
+			<rotate direction="cw"/>
+			<rotate direction="cw"/>
+		</actions>
+	</rock>
+	<exit x="10" y="4"/>
+	<ship n="captain" x="0" y="4"/>
+</phase>

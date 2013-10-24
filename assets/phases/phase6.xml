@@ -1,0 +1,103 @@
+<phase names="captain,kate" next="phase7">
+    <wall x="0" y="8" w="4" h="2"/>
+    <wall x="0" y="0" w="4" h="7"/>
+    <wall x="6" y="0" w="6" h="9"/>
+    <exit x="4" y="8"/>
+    <trigger n="alarm" x="4" y="1" v="false" r="90">
+        <activate>
+            <actions idref="lenny">
+                <speak p="right">What the...?</speak>
+                <rotate direction="cw"/>
+                <rotate direction="cw"/>
+            </actions>
+            <actions idref="carl">
+                <rotate direction="ccw"/>
+                <rotate direction="ccw"/>
+            </actions>
+            <actions idref="lenny" forever="true">
+                <shoot/>
+            </actions>
+            <actions idref="carl" forever="true">
+                <shoot/>
+            </actions>
+        </activate>
+    </trigger>
+    <ship n="carl" x="4" y="0" r="90"/>
+    <ship n="lenny" x="5" y="0" r="90"/>
+    <ship n="captain" x="0" y="7"/>
+    <ship n="kate" x="4" y="2" r="270"/>
+    <start>
+        <actions idref="kate">
+            <ghost time="1" invincible="false"/>
+            <speak>He's following me! If he appears, shoot him!</speak>
+        </actions>
+        <parallel>
+            <actions idref="carl">
+                <speak p="left">Yes, M'dam!</speak>
+            </actions>
+            <actions idref="lenny">
+                <speak p="right">Yes, M'dam!</speak>
+            </actions>
+        </parallel>
+        <actions idref="kate">
+            <rotate direction="cw"/>
+            <rotate direction="cw"/>
+            <move distance="10" speed="high"/>
+        </actions>
+        <actions idref="carl">
+            <ghost time="1" invincible="false"/>
+        </actions>
+        <parallel>
+            <actions idref="carl">
+                <rotate direction="cw"/>
+            </actions>
+            <actions idref="lenny">
+                <rotate direction="ccw"/>
+            </actions>
+        </parallel>
+        <actions idref="carl">
+            <speak p="left">Why doesn't she kill him?</speak>
+        </actions>
+        <actions idref="lenny">
+            <speak p="right">I guess she still has feelings for him.</speak>
+        </actions>
+        <actions idref="carl">
+            <speak p="left">Darn... Just today, when we're going to see the Halley pass.</speak>
+        </actions>
+        <actions idref="lenny">
+            <speak p="right">We still can. Just put the alarm</speak>
+        </actions>
+        <actions idref="carl">
+            <speak p="left">Great idea!</speak>
+            <rotate direction="ccw"/>
+        </actions>
+        <actions idref="alarm">
+            <visibility value="true"/>
+            <move distance="6" speed="high"/>
+        </actions>
+        <actions idref="carl">
+            <rotate direction="cw"/>
+            <speak p="left">Now we can see the Halley.</speak>
+        </actions>
+        <parallel>
+            <actions idref="carl">
+                <rotate direction="cw"/>
+            </actions>
+            <actions idref="lenny">
+                <rotate direction="ccw"/>
+            </actions>
+        </parallel>
+        <actions idref="carl">
+            <ghost time="1" invincible="false"/>
+            <speak p="left">What are you thinking?</speak>
+        </actions>
+        <actions idref="lenny">
+            <speak p="right">I'm thinking of you.</speak>
+        </actions>
+        <actions idref="carl">
+            <rotate direction="ccw"/>
+            <ghost time="1" invincible="false"/>
+            <rotate direction="cw"/>
+        </actions>
+    </start>
+</phase>

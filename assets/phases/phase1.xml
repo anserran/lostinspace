@@ -1,0 +1,159 @@
+<phase names="captain,susan,ben,kate,actions,move,rotate,shoot,ghost" next="phase2">
+    <trigger n="disarmer" x="5" y="4" r="180" v="false"/>
+    <wall x="8" y="0" h="2" w="3"/>
+    <wall x="10" y="1" w="2" h="7"/>
+    <wall x="8" y="7" w="3" h="3"/>
+    <exit y="4" x="9"/>
+    <exit n="trap2" y="2" x="8" r="180"/>
+    <exit n="trap1" y="6" x="8" r="180"/>
+    <rock s="1" t="white" x="8" y="2"/>
+    <rock s="1" t="white" x="8" y="6"/>
+    <rock s="1" t="black" x="9" y="2"/>
+    <rock s="1" t="black" x="9" y="3"/>
+    <rock s="1" t="white" x="9" y="4"/>
+    <rock s="1" t="black" x="9" y="5"/>
+    <rock s="1" t="black" x="9" y="6"/>
+    <levelup n="actions" t="actions" v="false" x="2" y="4"/>
+    <levelup n="move" t="move" v="false" x="2" y="4"/>
+    <levelup n="rotate" t="rotate" v="false" x="2" y="4"/>
+    <levelup n="shoot" t="shoot" v="false" x="2" y="4"/>
+    <levelup n="ghost" t="ghost" v="false" x="2" y="4"/>
+    <trigger n="info" x="6" y="4" hidden="true" v="false">
+        <activate>
+            <actions idref="captain">
+                <console l="info">Great! Keep moving. You can press the abilities buttons over the console to see how to use them.</console>
+            </actions>
+        </activate>
+          </trigger>
+    <ship n="susan" x="0" y="2"/>
+    <ship n="captain" x="0" y="4"/>
+    <ship n="ben" x="0" y="6"/>
+    <ship n="kate" x="1" y="4"/>
+    <start>
+        <actions idref="captain">
+            <ghost time="1" invincible="false"/>
+        </actions>
+        <parallel>
+            <actions idref="kate">
+                <move distance="5" speed="high"/>
+                <rotate direction="ccw"/>
+                <rotate direction="ccw"/>
+            </actions>
+            <actions idref="captain">
+                <move distance="1" speed="slow"/>
+            </actions>
+            <actions idref="susan">
+                <move distance="1" speed="slow"/>
+            </actions>
+            <actions idref="ben">
+                <move distance="1" speed="slow"/>
+            </actions>
+        </parallel>
+        <actions idref="captain">
+            <speak>You won't escape, Kate!</speak>
+        </actions>
+        <actions idref="kate">
+            <speak p="left">Oh! Yes, I will! You and your Beta Team will be destroyed.</speak>
+        </actions>
+        <actions idref="captain">
+            <speak>You killed my father! I will avenge him.</speak>
+        </actions>
+        <actions idref="ben">
+            <speak>She also killed the rest of the Beta Team...</speak>
+            <speak>I mean... We were like 50 and now we are 3, so...</speak>
+        </actions>
+        <actions idref="susan">
+            <speak>Yeah, why does he always forget that?</speak>
+        </actions>
+        <actions idref="captain">
+            <speak>You'll pay for your crimes!</speak>
+        </actions>
+        <actions idref="kate">
+            <speak p="left">Yeah, we'll see!</speak>
+            <rotate direction="cw"/>
+            <rotate direction="cw"/>
+            <shoot/>
+            <rotate direction="cw"/>
+            <rotate direction="cw"/>
+        </actions>
+        <actions idref="disarmer">
+            <visibility value="true"/>
+            <move distance="4" speed="high"/>
+        </actions>
+        <parallel>
+            <actions idref="actions">
+                <ghost time="4"/>
+                <visibility value="true"/>
+                <move distance="7" speed="high"/>
+            </actions>
+            <actions idref="move">
+                <ghost time="3"/>
+                <visibility value="true"/>
+                <move distance="7" speed="high"/>
+            </actions>
+            <actions idref="rotate">
+                <ghost time="2"/>
+                <visibility value="true"/>
+                <move distance="7" speed="high"/>
+            </actions>
+            <actions idref="shoot">
+                <ghost time="1"/>
+                <visibility value="true"/>
+                <move distance="7" speed="high"/>
+            </actions>
+            <actions idref="ghost">
+                <visibility value="true"/>
+                <move distance="7" speed="high"/>
+            </actions>
+        </parallel>
+        <actions idref="captain">
+            <speak>She destroyed all our systems! Just as she destroyed... MY LIFE</speak>
+        </actions>
+        <actions idref="susan">
+            <speak>Yes, we saw all the parts flying... both times.</speak>
+        </actions>
+        <actions idref="ben">
+            <speak>And, again, she destroyed almost all our team...</speak>
+            <speak>Maybe we should call the Alpha Team to handle this...</speak>
+        </actions>
+        <actions idref="captain">
+            <move distance="4"/>
+            <speak p="left">I will destroy you! For my father!</speak>
+        </actions>
+        <actions idref="ben">
+            <speak>...and FOR the Beta Team. Man... what is wrong with him?</speak>
+        </actions>
+        <actions idref="kate">
+            <speak>See you NEVER!</speak>
+            <rotate direction="cw"/>
+            <rotate direction="cw"/>
+            <move distance="2"/>
+            <rotate direction="cw"/>
+            <shoot/>
+        </actions>
+        <actions idref="trap2">
+            <move distance="7" speed="high"/>
+        </actions>
+        <actions idref="kate">
+            <rotate direction="ccw"/>
+            <rotate direction="ccw"/>
+            <shoot/>
+        </actions>
+        <parallel>
+            <actions idref="ben">
+                <speak>Oh, oh...</speak>
+            </actions>
+            <actions idref="trap1">
+                <move distance="7" speed="high"/>
+            </actions>
+        </parallel>
+        <actions idref="kate">
+            <rotate direction="cw"/>
+            <move distance="1"/>
+        </actions>
+        <actions idref="info">
+            <visibility value="true"/>
+            <console l="info">Write &lt;actions&gt;&lt;move/&gt;&lt;/actions&gt; and press the thunder to follow Kate.</console>
+        </actions>
+    </start>
+</phase>

@@ -1,0 +1,17 @@
+<phase names="captain,kate" next="phase5">
+    <exit x="9" y="1"/>
+    <rock x="2" y="8" s="1" rotationSpeed="0.5" t="black"/>
+    <rock x="3" y="5" s="2" rotationSpeed="1.1" t="black"/>
+    <rock x="6" y="2" s="2" rotationSpeed="0.7" t="white"/>
+    <rock x="5" y="3" s="1" rotationSpeed="0.7" t="white"/>
+    <wall x="0" y="0" w="6" h="3"/>
+    <wall x="5" y="5" w="6" h="5"/>
+    <ship n="captain" x="3" y="8" r="270"/>
+    <ship n="kate" x="3" y="4" r="0">
+        <actions>
+            <move distance="6"/>
+            <rotate direction="cw"/>
+            <move distance="6"/>
+        </actions>
+    </ship>
+</phase>
