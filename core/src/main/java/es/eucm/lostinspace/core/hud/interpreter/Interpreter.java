@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import es.eucm.lostinspace.core.AssetManager;
 import es.eucm.lostinspace.core.screens.PhaseScreen;
 
-public class Interpreter extends TextArea {
+public class Interpreter extends com.badlogic.gdx.scenes.scene2d.ui.TextArea {
 
 	private boolean error;
 
@@ -31,7 +31,7 @@ public class Interpreter extends TextArea {
 	}
 
 	public void setEnable (boolean enable) {
-		super.setEnable(enable);
+		super.setDisabled(!enable);
 		this.setColor(enable ? Color.WHITE : Color.LIGHT_GRAY);
 	}
 
@@ -44,7 +44,7 @@ public class Interpreter extends TextArea {
 		return error;
 	}
 
-	public static class InterpreterStyle extends TextField.TextFieldStyle {
+	public static class InterpreterStyle extends com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle {
 
 		public InterpreterStyle () {
 			font = PhaseScreen.assetManager.getFont(AssetManager.CONSOLE_FONT);
@@ -54,7 +54,7 @@ public class Interpreter extends TextArea {
 			background.setLeftWidth(10);
 			background.setRightWidth(20);
 			background.setTopHeight(5);
-			background.setBottomHeight(font.getLineHeight());
+			background.setBottomHeight(0);
 
 			Pixmap p = new Pixmap(2, (int)font.getLineHeight(), Pixmap.Format.RGB888);
 			p.setColor(Color.LIGHT_GRAY);
