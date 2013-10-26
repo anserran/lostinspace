@@ -110,8 +110,10 @@ public class PhaseManager /* implements XMLParser.ErrorHandler */{
 				currentStep = scriptSteps.removeIndex(0);
 				currentStep.start();
 				PhaseScreen.console.setEnable(false);
+				PhaseScreen.mapHud.setVisibleSkip(true);
 			} else {
 				PhaseScreen.console.setEnable(true);
+				PhaseScreen.mapHud.setVisibleSkip(false);
 			}
 			PhaseScreen.mapHud.startPhase();
 		}
@@ -135,6 +137,7 @@ public class PhaseManager /* implements XMLParser.ErrorHandler */{
 				currentStep = null;
 				state = IN_PHASE;
 				PhaseScreen.console.setEnable(true);
+				PhaseScreen.mapHud.setVisibleSkip(false);
 			}
 		}
 
@@ -324,5 +327,9 @@ public class PhaseManager /* implements XMLParser.ErrorHandler */{
 
 	public void error (String message) {
 		this.errorMessage = message;
+	}
+
+	public boolean isInCutscene () {
+		return state == IN_CUTSCENE;
 	}
 }

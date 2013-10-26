@@ -9,6 +9,8 @@ import aurelienribon.tweenengine.TweenEquations;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.Pool;
@@ -39,6 +41,8 @@ public class MapHud extends Group implements TweenCallback {
 	/** Score style */
 	private Label.LabelStyle scoreStyle;
 
+	private ImageActor skipButton;
+
 	private String scoreString;
 
 	/** Labels pool */
@@ -68,6 +72,22 @@ public class MapHud extends Group implements TweenCallback {
 		score.setAlignment(Align.left);
 		score.setWidth(PhaseScreen.STAGE_WIDTH);
 		initTransition();
+
+		skipButton = new ImageActor();
+		skipButton.setTextureRegion("hud.png", 14, 0, 2, 1, true);
+		skipButton.setPosition(0, 0);
+		skipButton.setSize(PhaseScreen.SQUARE_SIZE * 2, PhaseScreen.SQUARE_SIZE);
+		skipButton.setVisible(false);
+		skipButton.addListener(new InputListener() {
+			@Override
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				skipButton.setVisible(false);
+				LostInSpace.phaseScreen.skipCutscene();
+				return false;
+			}
+		});
+
+		this.addActor(skipButton);
 		this.addActor(startScreen);
 		this.addActor(gameOverScreen);
 		this.addActor(phaseResults);
@@ -150,5 +170,9 @@ public class MapHud extends Group implements TweenCallback {
 					labelsPool.free((Label)source.getUserData());
 				}
 			}).start(PhaseScreen.tweenManager);
+	}
+
+	public void setVisibleSkip (boolean visible) {
+		skipButton.setVisible(visible);
 	}
 }

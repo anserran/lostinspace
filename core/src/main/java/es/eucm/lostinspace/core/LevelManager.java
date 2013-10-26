@@ -185,23 +185,22 @@ public class LevelManager {
 		return totalInstructions;
 	}
 
-
-	public void storeLevels(){
+	public void storeLevels () {
 		pref.putInteger("ts", totalScore);
-		for ( int i = 0; i < totalLevels.length; i++ ){
+		for (int i = 0; i < totalLevels.length; i++) {
 			pref.putInteger("l" + i, totalLevels[i]);
 		}
-		for ( int i = 0; i < totalInstructions.length; i++ ){
+		for (int i = 0; i < totalInstructions.length; i++) {
 			pref.putInteger("i" + i, totalInstructions[i]);
 		}
 	}
 
-	public void restoreLevels(){
+	public void restoreLevels () {
 		totalScore = pref.getInteger("ts", 0);
-		for ( int i = 0; i < totalLevels.length; i++ ){
+		for (int i = 0; i < totalLevels.length; i++) {
 			totalLevels[i] = pref.getInteger("l" + i, 0);
 		}
-		for ( int i = 0; i < totalInstructions.length; i++ ){
+		for (int i = 0; i < totalInstructions.length; i++) {
 			totalInstructions[i] = pref.getInteger("i" + i, 0);
 		}
 	}

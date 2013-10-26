@@ -96,7 +96,7 @@ public class AssetManager extends com.badlogic.gdx.assets.AssetManager {
 		String[] images = new String[] {"grid.png", "placeholder.png", "bullet.png", "textbox.png", "ship.png", "wall.png",
 			"warp.png", "hud.png", "comm.png", "rocks.png", "levelups.png", "trigger.png", "titlescreen.png", "endscreen.png",
 			"helpbg.png", "balloon.png", "logo.png", "title.png", "xmledition.png"};
-		int[] columns = new int[] {16, 1, 1, 1, 1, 3, 1, 14, 5, 2, 5, 2, 1, 1, 1, 3, 2, 14, 3};
+		int[] columns = new int[] {16, 1, 1, 1, 1, 3, 1, 16, 5, 2, 5, 2, 1, 1, 1, 3, 2, 14, 3};
 
 		if (images.length != columns.length) {
 			Gdx.app.log("AssetManager", "Some image is missing its columns");

@@ -61,7 +61,7 @@ public class TitleScreen implements Screen {
 		continueButton.setHoverEffect(true);
 		continueButton.addListener(new InputListener() {
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				game.continueGame();
 				return false;
 			}

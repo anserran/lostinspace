@@ -11,11 +11,25 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import es.eucm.ead.tools.xml.XMLParser;
-import es.eucm.lostinspace.core.*;
-import es.eucm.lostinspace.core.actions.*;
+import es.eucm.lostinspace.core.AssetManager;
+import es.eucm.lostinspace.core.LevelManager;
+import es.eucm.lostinspace.core.LostInSpace;
+import es.eucm.lostinspace.core.MessageListener;
+import es.eucm.lostinspace.core.PhaseManager;
+import es.eucm.lostinspace.core.Pools;
+import es.eucm.lostinspace.core.SpaceContactListener;
+import es.eucm.lostinspace.core.actions.GhostAction;
+import es.eucm.lostinspace.core.actions.MoveAction;
+import es.eucm.lostinspace.core.actions.RotateAction;
+import es.eucm.lostinspace.core.actions.ShootAction;
+import es.eucm.lostinspace.core.actions.SpeakAction;
 import es.eucm.lostinspace.core.actors.Grid;
 import es.eucm.lostinspace.core.actors.ImageActor;
 import es.eucm.lostinspace.core.actors.Map;
@@ -73,8 +87,10 @@ public class PhaseScreen implements Screen {
 	public static TweenManager tweenManager;
 
 	public static Pools pools;
+	private boolean skipCutscene;
 
 	public PhaseScreen () {
+		skipCutscene = false;
 		phaseManager = LostInSpace.phaseManager;
 		// Color to clear the background
 		pools = LostInSpace.pools;
@@ -118,6 +134,18 @@ public class PhaseScreen implements Screen {
 		if (debug) {
 			addDebug();
 		}
+
+		stage.addCaptureListener(new InputListener() {
+			@Override
+			public boolean keyDown (InputEvent event, int keycode) {
+				switch (keycode) {
+				case Input.Keys.SPACE:
+					skipCutscene();
+					break;
+				}
+				return super.keyDown(event, keycode);
+			}
+		});
 
 	}
 
@@ -206,11 +234,21 @@ public class PhaseScreen implements Screen {
 	public void render (float delta) {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		float step = Math.min(delta, 1 / 30f);
-		tweenManager.update(step);
-		phaseManager.act(step);
-		stage.act(step);
+		if (skipCutscene && phaseManager.isInCutscene()) {
+			while (phaseManager.isInCutscene()) {
+				tweenManager.update(step);
+				phaseManager.act(step);
+				stage.act(step);
+				world.step(step, 10, 10);
+			}
+			skipCutscene = false;
+		} else {
+			tweenManager.update(step);
+			phaseManager.act(step);
+			stage.act(step);
+			world.step(step, 10, 10);
+		}
 		stage.draw();
-		world.step(step, 10, 10);
 		if (debug) {
 			box2Drenderer.render(world, stage.getCamera().combined);
 		}
@@ -256,6 +294,12 @@ public class PhaseScreen implements Screen {
 
 	public static void msg (String msg) {
 		messageListener.msg(msg);
+	}
+
+	public void skipCutscene () {
+		if (phaseManager.isInCutscene()) {
+			skipCutscene = true;
+		}
 	}
 
 }

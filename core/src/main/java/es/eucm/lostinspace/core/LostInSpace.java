@@ -20,7 +20,7 @@ public class LostInSpace extends Game {
 	public static Tracker gleanerTracker;
 	public static LevelManager levelManager;
 
-	private PhaseScreen phaseScreen;
+	public static PhaseScreen phaseScreen;
 
 	private TitleScreen titleScreen;
 
@@ -44,7 +44,7 @@ public class LostInSpace extends Game {
 		this.setScreen(phaseScreen);
 	}
 
-	public void continueGame() {
+	public void continueGame () {
 		Preferences pref = Gdx.app.getPreferences("lis");
 		String phase = pref.getString("phase");
 		phaseManager.setFirstPhase(phase);
