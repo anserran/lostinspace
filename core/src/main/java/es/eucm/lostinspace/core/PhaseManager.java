@@ -1,9 +1,10 @@
 
 package es.eucm.lostinspace.core;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
-
 import es.eucm.ead.tools.xml.XMLNode;
 import es.eucm.lostinspace.core.actions.AbstractAction;
 import es.eucm.lostinspace.core.actors.AbstractActor;
@@ -45,6 +46,8 @@ public class PhaseManager /* implements XMLParser.ErrorHandler */{
 
 	private XMLNode currentPhaseDef;
 
+	private String firstPhase;
+
 	/** If the player is in the title screen */
 	private int state;
 
@@ -54,17 +57,25 @@ public class PhaseManager /* implements XMLParser.ErrorHandler */{
 	/** Error message */
 	private String errorMessage;
 
+	private Preferences pref;
+
 	public PhaseManager () {
 		idsForExits = new Array<String>();
 		actionsCreator = LostInSpace.actionsCreator;
 		phaseCreator = LostInSpace.phaseCreator;
 		state = IN_TITLE;
+		pref = Gdx.app.getPreferences("lis");
+	}
+
+	/** Sets the first phase to be load **/
+	public void setFirstPhase (String firstPhase) {
+		this.firstPhase = firstPhase;
 	}
 
 	/** Loads the first phase */
 	public void loadFirstPhase () {
 		PhaseScreen.mapHud.startGame();
-		loadPhase("phase1");
+		loadPhase(firstPhase == null ? "phase1" : firstPhase);
 		PhaseScreen.levelManager.upLevel(LevelManager.Abilities.ACTIONS);
 		PhaseScreen.levelManager.upLevel(LevelManager.Abilities.MOVE);
 		PhaseScreen.communicator.addMessage(null, null);
@@ -74,6 +85,8 @@ public class PhaseManager /* implements XMLParser.ErrorHandler */{
 	 * 
 	 * @param id the phase id */
 	public void loadPhase (String id) {
+		pref.putString("phase", id);
+		pref.flush();
 		PhaseScreen.communicator.addMessage(null, "");
 		LostInSpace.tracker.startPhase(id.equals(currentPhaseId), id);
 		state = IN_PHASE;

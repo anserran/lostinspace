@@ -8,13 +8,14 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
 import es.eucm.lostinspace.core.AssetManager;
 import es.eucm.lostinspace.core.screens.PhaseScreen;
 
-public class Interpreter extends com.badlogic.gdx.scenes.scene2d.ui.TextArea {
+public class Interpreter extends TextArea {
 
 	private boolean error;
 
@@ -44,7 +45,7 @@ public class Interpreter extends com.badlogic.gdx.scenes.scene2d.ui.TextArea {
 		return error;
 	}
 
-	public static class InterpreterStyle extends com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle {
+	public static class InterpreterStyle extends TextFieldStyle {
 
 		public InterpreterStyle () {
 			font = PhaseScreen.assetManager.getFont(AssetManager.CONSOLE_FONT);

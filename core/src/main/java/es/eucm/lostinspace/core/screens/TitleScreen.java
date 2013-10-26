@@ -56,7 +56,16 @@ public class TitleScreen implements Screen {
 				return false;
 			}
 		});
-
+		// Start button
+		ImageActor continueButton = (ImageActor)stage.getRoot().findActor("continue");
+		continueButton.setHoverEffect(true);
+		continueButton.addListener(new InputListener() {
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				game.continueGame();
+				return false;
+			}
+		});
 	}
 
 	@Override

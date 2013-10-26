@@ -1,6 +1,8 @@
 
 package es.eucm.lostinspace.core;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import es.eucm.ead.tools.xml.XMLNode;
 import es.eucm.lostinspace.core.parsers.ActionsCreator;
 import es.eucm.lostinspace.core.parsers.Parser;
@@ -14,11 +16,11 @@ public class LevelManager {
 
 	public static final int COMMAND_POINTS = 10;
 
-	/** Accumulated levels */
-	private int levels[];
+	/** Accumulated totalLevels */
+	private int totalLevels[];
 
 	/** Levels acquired in the current phase */
-	private int phaseLevels[];
+	private int levels[];
 
 	/** Current phase score */
 	private int score;
@@ -35,9 +37,12 @@ public class LevelManager {
 	/** Auxiliary var */
 	private List<XMLNode> nodesToRemove;
 
+	/** App preferences */
+	private Preferences pref;
+
 	public LevelManager () {
+		totalLevels = new int[Abilities.values().length];
 		levels = new int[Abilities.values().length];
-		phaseLevels = new int[Abilities.values().length];
 		score = 0;
 		totalScore = 0;
 		instructions = new int[Abilities.values().length];
@@ -45,21 +50,22 @@ public class LevelManager {
 		resetLevels();
 
 		nodesToRemove = new ArrayList<XMLNode>();
+		pref = Gdx.app.getPreferences("lis");
 	}
 
-	/** Reset all abilities levels */
+	/** Reset all abilities totalLevels */
 	public void resetLevels () {
 		for (int i = 0; i < Abilities.values().length; i++) {
-			levels[i] = -1;
-			phaseLevels[i] = 0;
+			totalLevels[i] = -1;
+			levels[i] = 0;
 		}
 	}
 
 	/** Sets all abilities to maximum (intended for debug) */
 	public void maxLevels () {
 		for (int i = 0; i < Abilities.values().length; i++) {
-			levels[i] = Abilities.values()[i].getMaxLevel();
-			phaseLevels[i] = 0;
+			totalLevels[i] = Abilities.values()[i].getMaxLevel();
+			levels[i] = 0;
 		}
 	}
 
@@ -68,23 +74,23 @@ public class LevelManager {
 	 * @param a the ability
 	 * @return the current level */
 	public int getCurrentLevel (Abilities a) {
-		return Math.min(a.getMaxLevel(), levels[a.ordinal()] + phaseLevels[a.ordinal()]);
+		return Math.min(a.getMaxLevel(), totalLevels[a.ordinal()] + levels[a.ordinal()]);
 	}
 
 	/** Ups one level
 	 * 
 	 * @param a the ability */
 	public void upLevel (Abilities a) {
-		if (levels[a.ordinal()] + phaseLevels[a.ordinal()] < a.getMaxLevel()) {
-			phaseLevels[a.ordinal()]++;
+		if (totalLevels[a.ordinal()] + levels[a.ordinal()] < a.getMaxLevel()) {
+			levels[a.ordinal()]++;
 			PhaseScreen.communicator.addMessage("info", PhaseScreen.i18n("Part recovered! Click on it to see how to use it."));
 		}
 	}
 
 	/** Reset phase results */
 	public void rollbackResults () {
-		for (int i = 0; i < phaseLevels.length; i++) {
-			phaseLevels[i] = 0;
+		for (int i = 0; i < levels.length; i++) {
+			levels[i] = 0;
 		}
 		score = 0;
 		for (int i = 0; i < instructions.length; i++) {
@@ -92,10 +98,10 @@ public class LevelManager {
 		}
 	}
 
-	/** Accumulate phase levels and total levels */
+	/** Accumulate phase totalLevels and total totalLevels */
 	public void commitResults () {
-		for (int i = 0; i < phaseLevels.length; i++) {
-			levels[i] += phaseLevels[i];
+		for (int i = 0; i < levels.length; i++) {
+			totalLevels[i] += levels[i];
 		}
 		totalScore += score;
 		int total = 0;
@@ -104,6 +110,7 @@ public class LevelManager {
 			total += instructions[i];
 		}
 		totalScore -= total * COMMAND_POINTS;
+		storeLevels();
 		rollbackResults();
 	}
 
@@ -176,6 +183,27 @@ public class LevelManager {
 
 	public int[] getTotalInstructions () {
 		return totalInstructions;
+	}
+
+
+	public void storeLevels(){
+		pref.putInteger("ts", totalScore);
+		for ( int i = 0; i < totalLevels.length; i++ ){
+			pref.putInteger("l" + i, totalLevels[i]);
+		}
+		for ( int i = 0; i < totalInstructions.length; i++ ){
+			pref.putInteger("i" + i, totalInstructions[i]);
+		}
+	}
+
+	public void restoreLevels(){
+		totalScore = pref.getInteger("ts", 0);
+		for ( int i = 0; i < totalLevels.length; i++ ){
+			totalLevels[i] = pref.getInteger("l" + i, 0);
+		}
+		for ( int i = 0; i < totalInstructions.length; i++ ){
+			totalInstructions[i] = pref.getInteger("i" + i, 0);
+		}
 	}
 
 	public enum Abilities {

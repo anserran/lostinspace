@@ -90,7 +90,7 @@ public class PhaseScreen implements Screen {
 		// Init levels
 
 		communicator = new Communicator();
-		levelManager = new LevelManager();
+		levelManager = LostInSpace.levelManager;
 		initPhysicWorld();
 		stage = new Stage(STAGE_WIDTH, STAGE_HEIGHT, true);
 		map = new Group();

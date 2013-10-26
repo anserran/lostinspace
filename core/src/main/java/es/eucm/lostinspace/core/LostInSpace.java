@@ -3,7 +3,7 @@ package es.eucm.lostinspace.core;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-
+import com.badlogic.gdx.Preferences;
 import es.eucm.gleaner.tracker.Tracker;
 import es.eucm.lostinspace.core.parsers.ActionsCreator;
 import es.eucm.lostinspace.core.parsers.PhaseCreator;
@@ -18,6 +18,7 @@ public class LostInSpace extends Game {
 	public static PhaseManager phaseManager;
 
 	public static Tracker gleanerTracker;
+	public static LevelManager levelManager;
 
 	private PhaseScreen phaseScreen;
 
@@ -31,6 +32,7 @@ public class LostInSpace extends Game {
 	public void create () {
 		Gdx.gl.glClearColor(0.65f, 0.65f, 0.67f, 1.0f);
 		phaseManager = new PhaseManager();
+		levelManager = new LevelManager();
 		tracker = new GameTracker();
 		tracker.startTracking();
 		phaseScreen = new PhaseScreen();
@@ -40,5 +42,15 @@ public class LostInSpace extends Game {
 
 	public void startGame () {
 		this.setScreen(phaseScreen);
+	}
+
+	public void continueGame() {
+		Preferences pref = Gdx.app.getPreferences("lis");
+		String phase = pref.getString("phase");
+		phaseManager.setFirstPhase(phase);
+		startGame();
+		phaseManager.loadFirstPhase();
+		levelManager.restoreLevels();
+
 	}
 }
