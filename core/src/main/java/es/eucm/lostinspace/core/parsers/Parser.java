@@ -2,8 +2,8 @@
 package es.eucm.lostinspace.core.parsers;
 
 import com.badlogic.gdx.Gdx;
-import es.eucm.ead.tools.xml.XMLNode;
 import es.eucm.lostinspace.core.screens.PhaseScreen;
+import es.eucm.tools.xml.XMLNode;
 
 import java.util.HashMap;
 import java.util.Map;

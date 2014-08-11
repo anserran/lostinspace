@@ -3,10 +3,10 @@ package es.eucm.lostinspace.core;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
-import es.eucm.ead.tools.xml.XMLNode;
 import es.eucm.lostinspace.core.parsers.ActionsCreator;
 import es.eucm.lostinspace.core.parsers.Parser;
 import es.eucm.lostinspace.core.screens.PhaseScreen;
+import es.eucm.tools.xml.XMLNode;
 
 import java.util.ArrayList;
 import java.util.List;

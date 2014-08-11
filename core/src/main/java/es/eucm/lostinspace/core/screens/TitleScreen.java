@@ -1,19 +1,19 @@
-
 package es.eucm.lostinspace.core.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
-import es.eucm.ead.tools.xml.XMLNode;
 import es.eucm.lostinspace.core.LostInSpace;
 import es.eucm.lostinspace.core.actors.AbstractActor;
 import es.eucm.lostinspace.core.actors.ImageActor;
 import es.eucm.lostinspace.core.parsers.PhaseCreator;
+import es.eucm.tools.xml.XMLNode;
 
 public class TitleScreen implements Screen {
 
@@ -23,45 +23,50 @@ public class TitleScreen implements Screen {
 
 	private PhaseCreator phaseCreator;
 
-	public TitleScreen (LostInSpace game) {
+	public TitleScreen(LostInSpace game) {
 		phaseCreator = LostInSpace.phaseCreator;
 		this.game = game;
 	}
 
 	@Override
-	public void render (float delta) {
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+	public void render(float delta) {
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.act(delta);
 		stage.draw();
 	}
 
 	@Override
-	public void resize (int width, int height) {
+	public void resize(int width, int height) {
 	}
 
 	@Override
-	public void show () {
-		stage = new Stage(PhaseScreen.STAGE_WIDTH, PhaseScreen.STAGE_HEIGHT, true);
+	public void show() {
+		stage = new Stage(new StretchViewport(PhaseScreen.STAGE_WIDTH,
+				PhaseScreen.STAGE_HEIGHT));
 		Gdx.input.setInputProcessor(stage);
 		String text = PhaseScreen.assetManager.getTextFile("phases/title.xml");
 		XMLNode n = PhaseScreen.xmlParser.parse(text);
 		phaseCreator.createPhase(n, stage.getRoot());
 		// Start button
-		ImageActor startButton = (ImageActor)stage.getRoot().findActor("start");
+		ImageActor startButton = (ImageActor) stage.getRoot()
+				.findActor("start");
 		startButton.setHoverEffect(true);
 		startButton.addListener(new InputListener() {
 			@Override
-			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
 				game.startGame();
 				return false;
 			}
 		});
 		// Start button
-		ImageActor continueButton = (ImageActor)stage.getRoot().findActor("continue");
+		ImageActor continueButton = (ImageActor) stage.getRoot().findActor(
+				"continue");
 		continueButton.setHoverEffect(true);
 		continueButton.addListener(new InputListener() {
 			@Override
-			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
 				game.continueGame();
 				return false;
 			}
@@ -69,24 +74,24 @@ public class TitleScreen implements Screen {
 	}
 
 	@Override
-	public void hide () {
+	public void hide() {
 		for (Actor a : stage.getRoot().getChildren()) {
 			if (a instanceof AbstractActor) {
-				((AbstractActor)a).dispose();
+				((AbstractActor) a).dispose();
 			}
 		}
 		stage.dispose();
 	}
 
 	@Override
-	public void pause () {
+	public void pause() {
 	}
 
 	@Override
-	public void resume () {
+	public void resume() {
 	}
 
 	@Override
-	public void dispose () {
+	public void dispose() {
 	}
 }

@@ -1,4 +1,3 @@
-
 package es.eucm.lostinspace.core.screens;
 
 import aurelienribon.tweenengine.Tween;
@@ -16,8 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
-import es.eucm.ead.tools.xml.XMLParser;
 import es.eucm.lostinspace.core.AssetManager;
 import es.eucm.lostinspace.core.LevelManager;
 import es.eucm.lostinspace.core.LostInSpace;
@@ -39,6 +38,7 @@ import es.eucm.lostinspace.core.hud.maphud.MapHud;
 import es.eucm.lostinspace.core.parsers.ActionsCreator;
 import es.eucm.lostinspace.core.tweens.ActorTweenAccessor;
 import es.eucm.lostinspace.core.util.XmlPrettifier;
+import es.eucm.tools.xml.XMLParser;
 
 public class PhaseScreen implements Screen {
 
@@ -89,7 +89,7 @@ public class PhaseScreen implements Screen {
 	public static Pools pools;
 	private boolean skipCutscene;
 
-	public PhaseScreen () {
+	public PhaseScreen() {
 		skipCutscene = false;
 		phaseManager = LostInSpace.phaseManager;
 		// Color to clear the background
@@ -108,7 +108,7 @@ public class PhaseScreen implements Screen {
 		communicator = new Communicator();
 		levelManager = LostInSpace.levelManager;
 		initPhysicWorld();
-		stage = new Stage(STAGE_WIDTH, STAGE_HEIGHT, true);
+		stage = new Stage(new StretchViewport(STAGE_WIDTH, STAGE_HEIGHT));
 		map = new Group();
 		Map realMap = new Map();
 		realMap.addActor(map);
@@ -117,14 +117,19 @@ public class PhaseScreen implements Screen {
 		mapHud.setX(CONSOLE_COLUMNS * SQUARE_SIZE);
 		console = new Console();
 		communicator.setY(PhaseScreen.SQUARE_SIZE * 6);
-		communicator.addMessage("info",
-			PhaseScreen.i18n("Write <start name=\"nickname\"/>, replacing nickname with your name. Click the thunder to send it."));
+		communicator
+				.addMessage(
+                        "info",
+                        PhaseScreen
+                                .i18n("Write <start name=\"nickname\"/>, replacing nickname with your name. Click the thunder to send it."));
 
 		stage.addActor(new Grid());
 		stage.addActor(realMap);
 		ImageActor consoleBg = pools.obtain(ImageActor.class);
 		consoleBg.setTextureRegion("helpbg.png");
-		consoleBg.setSize(PhaseScreen.SQUARE_SIZE * PhaseScreen.CONSOLE_COLUMNS, PhaseScreen.SQUARE_SIZE * PhaseScreen.GRID_ROWS);
+		consoleBg.setSize(
+				PhaseScreen.SQUARE_SIZE * PhaseScreen.CONSOLE_COLUMNS,
+				PhaseScreen.SQUARE_SIZE * PhaseScreen.GRID_ROWS);
 		stage.addActor(consoleBg);
 		stage.addActor(mapHud);
 		stage.addActor(communicator);
@@ -137,7 +142,7 @@ public class PhaseScreen implements Screen {
 
 		stage.addCaptureListener(new InputListener() {
 			@Override
-			public boolean keyDown (InputEvent event, int keycode) {
+			public boolean keyDown(InputEvent event, int keycode) {
 				switch (keycode) {
 				case Input.Keys.SPACE:
 					skipCutscene();
@@ -149,18 +154,19 @@ public class PhaseScreen implements Screen {
 
 	}
 
-	private void addDebug () {
+	private void addDebug() {
 
 		box2Drenderer = new Box2DDebugRenderer();
 		stage.addCaptureListener(new InputListener() {
 			@Override
-			public boolean keyDown (InputEvent event, int keycode) {
+			public boolean keyDown(InputEvent event, int keycode) {
 				Actor player = stage.getRoot().findActor("captain");
 				if (player != null) {
 					switch (keycode) {
 					case Input.Keys.UP:
-						ActionsCreator.Speed s = (Gdx.input.isKeyPressed(Input.Keys.SHIFT_RIGHT) ? ActionsCreator.Speed.HIGH
-							: ActionsCreator.Speed.NORMAL);
+						ActionsCreator.Speed s = (Gdx.input
+								.isKeyPressed(Input.Keys.SHIFT_RIGHT) ? ActionsCreator.Speed.HIGH
+								: ActionsCreator.Speed.NORMAL);
 						player.addAction(new MoveAction(1, s.getSpeedValue()));
 						break;
 					case Input.Keys.DOWN:
@@ -196,7 +202,7 @@ public class PhaseScreen implements Screen {
 
 		stage.addCaptureListener(new InputListener() {
 			@Override
-			public boolean keyDown (InputEvent event, int keycode) {
+			public boolean keyDown(InputEvent event, int keycode) {
 				switch (keycode) {
 				case Input.Keys.F1:
 					console.sendCommands();
@@ -224,14 +230,14 @@ public class PhaseScreen implements Screen {
 	}
 
 	@Override
-	public void dispose () {
+	public void dispose() {
 		world.dispose();
 		stage.dispose();
 		assetManager.dispose();
 	}
 
 	@Override
-	public void render (float delta) {
+	public void render(float delta) {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		float step = Math.min(delta, 1 / 30f);
 		if (skipCutscene && phaseManager.isInCutscene()) {
@@ -255,48 +261,48 @@ public class PhaseScreen implements Screen {
 	}
 
 	@Override
-	public void resize (int width, int height) {
+	public void resize(int width, int height) {
 	}
 
 	@Override
-	public void show () {
+	public void show() {
 		Gdx.input.setInputProcessor(stage);
 	}
 
 	@Override
-	public void hide () {
+	public void hide() {
 	}
 
 	@Override
-	public void pause () {
+	public void pause() {
 	}
 
 	@Override
-	public void resume () {
+	public void resume() {
 	}
 
-	public static <T> T obtain (Class<T> clazz) {
+	public static <T> T obtain(Class<T> clazz) {
 		return pools.obtain(clazz);
 	}
 
-	public static void free (Object o) {
+	public static void free(Object o) {
 		pools.free(o);
 	}
 
-	public void initPhysicWorld () {
+	public void initPhysicWorld() {
 		world = new World(new Vector2(0.0f, 0.0f), true);
 		world.setContactListener(new SpaceContactListener());
 	}
 
-	public static String i18n (String s) {
+	public static String i18n(String s) {
 		return assetManager.i18n(s);
 	}
 
-	public static void msg (String msg) {
+	public static void msg(String msg) {
 		messageListener.msg(msg);
 	}
 
-	public void skipCutscene () {
+	public void skipCutscene() {
 		if (phaseManager.isInCutscene()) {
 			skipCutscene = true;
 		}

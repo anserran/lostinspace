@@ -2,8 +2,8 @@
 package es.eucm.lostinspace.core.actors;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import es.eucm.lostinspace.core.screens.PhaseScreen;
 
 public class Wall extends AbstractActor {
@@ -49,7 +49,7 @@ public class Wall extends AbstractActor {
 	}
 
 	@Override
-	public void draw (SpriteBatch batch, float parentAlpha) {
+	public void draw (Batch batch, float parentAlpha) {
 		sprite.setColor(this.getColor());
 		for (int i = 0; i < wallWidth; i++) {
 			for (int j = 0; j < wallHeight; j++) {

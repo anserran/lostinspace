@@ -1,10 +1,9 @@
-
 package es.eucm.lostinspace.core.actors;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
@@ -26,7 +25,8 @@ public class Ship extends AbstractActor {
 
 	public static final String CAPTAIN = "captain";
 
-	public static final String[] MAIN_CHARACTERS = new String[] {SUSAN, BEN, CAPTAIN};
+	public static final String[] MAIN_CHARACTERS = new String[] { SUSAN, BEN,
+			CAPTAIN };
 
 	public static final int MARKER_WIDTH = 2;
 
@@ -34,7 +34,7 @@ public class Ship extends AbstractActor {
 
 	private Label name;
 
-	public static boolean isMainCharacter (String name) {
+	public static boolean isMainCharacter(String name) {
 		for (String s : MAIN_CHARACTERS) {
 			if (s.equals(name)) {
 				return true;
@@ -43,12 +43,14 @@ public class Ship extends AbstractActor {
 		return false;
 	}
 
-	public Ship () {
-		name = new Label("", new Label.LabelStyle(PhaseScreen.assetManager.getFont(AssetManager.NAME_FONT), Color.WHITE));
+	public Ship() {
+		name = new Label("", new Label.LabelStyle(
+				PhaseScreen.assetManager.getFont(AssetManager.NAME_FONT),
+				Color.WHITE));
 	}
 
 	@Override
-	public void reset () {
+	public void reset() {
 		super.reset();
 		this.setInvincible(false);
 		this.setDestroyer(true);
@@ -56,19 +58,22 @@ public class Ship extends AbstractActor {
 	}
 
 	@Override
-	public void setSprite (Sprite sprite) {
+	public void setSprite(Sprite sprite) {
 		super.setSprite(sprite);
 		name.setText(this.getName().toUpperCase());
 		name.setWidth(PhaseScreen.SQUARE_SIZE);
 		name.setAlignment(Align.center);
 		if (marker == null) {
 			Texture t = PhaseScreen.assetManager.get("wall.png");
-			int size = t.getWidth() / PhaseScreen.assetManager.getColumnsTexture("wall.png");
-			marker = new TextureRegion((Texture)PhaseScreen.assetManager.get("wall.png"), size, size, size, size);
+			int size = t.getWidth()
+					/ PhaseScreen.assetManager.getColumnsTexture("wall.png");
+			marker = new TextureRegion(
+					(Texture) PhaseScreen.assetManager.get("wall.png"), size,
+					size, size, size);
 		}
 	}
 
-	public void setName (String name) {
+	public void setName(String name) {
 		super.setName(name);
 		if (CAPTAIN.equals(name)) {
 			this.setColor(Color.BLACK);
@@ -82,37 +87,37 @@ public class Ship extends AbstractActor {
 	}
 
 	@Override
-	public String getImage () {
+	public String getImage() {
 		return "ship.png";
 	}
 
 	@Override
-	public float getSpriteWidth () {
+	public float getSpriteWidth() {
 		return PhaseScreen.SQUARE_SIZE;
 	}
 
 	@Override
-	public float getSpriteHeight () {
+	public float getSpriteHeight() {
 		return PhaseScreen.SQUARE_SIZE;
 	}
 
 	@Override
-	public BodyType getBodyType () {
+	public BodyType getBodyType() {
 		return BodyType.CIRCLE;
 	}
 
 	@Override
-	public float getCollisionWidth () {
+	public float getCollisionWidth() {
 		return PhaseScreen.SQUARE_SIZE * 0.75f;
 	}
 
 	@Override
-	public float getCollisionHeight () {
+	public float getCollisionHeight() {
 		return PhaseScreen.SQUARE_SIZE * 0.75f;
 	}
 
 	@Override
-	protected void setSpriteTransformations (Sprite sprite) {
+	protected void setSpriteTransformations(Sprite sprite) {
 		super.setSpriteTransformations(sprite);
 		if (this.isInvincible()) {
 			Color c = this.getColor();
@@ -121,16 +126,16 @@ public class Ship extends AbstractActor {
 	}
 
 	@Override
-	public void draw (SpriteBatch batch, float parentAlpha) {
+	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
-		batch.draw(marker, getX() + getOriginX() - MARKER_WIDTH / 2, getY() + getOriginY(), MARKER_WIDTH,
-			PhaseScreen.SQUARE_SIZE / 2);
+		batch.draw(marker, getX() + getOriginX() - MARKER_WIDTH / 2, getY()
+				+ getOriginY(), MARKER_WIDTH, PhaseScreen.SQUARE_SIZE / 2);
 		name.setPosition(getX(), getY() + PhaseScreen.SQUARE_SIZE);
 		name.draw(batch, parentAlpha);
 	}
 
 	@Override
-	public String getType () {
+	public String getType() {
 		return TYPE;
 	}
 }

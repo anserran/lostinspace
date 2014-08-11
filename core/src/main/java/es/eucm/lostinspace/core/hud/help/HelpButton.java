@@ -5,8 +5,8 @@ import aurelienribon.tweenengine.Tween;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -73,7 +73,7 @@ public class HelpButton extends Group {
 	}
 
 	@Override
-	public void draw (SpriteBatch batch, float parentAlpha) {
+	public void draw (Batch batch, float parentAlpha) {
 		if (PhaseScreen.levelManager.getCurrentLevel(ability) == -1) {
 			batch.setColor(Color.DARK_GRAY);
 			batch.draw(empty, this.getX(), this.getY(), this.getWidth(), this.getHeight());

@@ -62,6 +62,7 @@ public class GameTracker {
 	 * @param id phase id */
 	public void startPhase (boolean restart, String id) {
 		tracker.phaseStart(id);
+        tracker.zone(id);
 		flush();
 	}
 
@@ -71,7 +72,6 @@ public class GameTracker {
 	 * @param totalScore adding the score and subtracting the actions
 	 * @param instructions the count of instructions sent in the phase */
 	public void endPhase (int score, int totalScore, int[] instructions) {
-		tracker.phaseEnd(phaseManager.getCurrentPhaseId());
 		tracker.score(phaseManager.getCurrentPhaseId(), totalScore);
 		for (int i = 0; i < instructions.length; i++) {
 			tracker.logic(ACTIONS, phaseManager.getCurrentPhaseId(), LevelManager.Abilities.values()[i].toString(), instructions[i]);

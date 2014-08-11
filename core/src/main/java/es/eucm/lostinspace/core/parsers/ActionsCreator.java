@@ -1,10 +1,17 @@
 
 package es.eucm.lostinspace.core.parsers;
 
-import es.eucm.ead.tools.xml.XMLNode;
 import es.eucm.lostinspace.core.LevelManager;
-import es.eucm.lostinspace.core.actions.*;
+import es.eucm.lostinspace.core.actions.AbstractAction;
+import es.eucm.lostinspace.core.actions.ConsoleAction;
+import es.eucm.lostinspace.core.actions.GhostAction;
+import es.eucm.lostinspace.core.actions.MoveAction;
+import es.eucm.lostinspace.core.actions.RotateAction;
+import es.eucm.lostinspace.core.actions.ShootAction;
+import es.eucm.lostinspace.core.actions.SpeakAction;
+import es.eucm.lostinspace.core.actions.VisibleAction;
 import es.eucm.lostinspace.core.screens.PhaseScreen;
+import es.eucm.tools.xml.XMLNode;
 
 public class ActionsCreator extends Parser {
 

@@ -60,33 +60,33 @@
 			<version>${gwt.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-servlet</artifactId>
-			<version>${gwt.version}</version>
-			<scope>runtime</scope>
-		</dependency>
+        <!-- XML -->
+        <dependency>
+            <groupId>es.e-ucm.tools.xml</groupId>
+            <artifactId>xml</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>es.e-ucm.tools.xml</groupId>
+            <artifactId>xml-gwt</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>es.e-ucm.tools.xml</groupId>
+            <artifactId>xml-gwt</artifactId>
+            <version>1.0</version>
+            <classifier>sources</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>es.e-ucm.tools.xml</groupId>
+            <artifactId>xml</artifactId>
+            <version>1.0</version>
+            <classifier>sources</classifier>
+            <scope>provided</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>es.e-ucm.ead</groupId>
-			<artifactId>ead-tools-gwt</artifactId>
-			<version>2.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>es.e-ucm.ead</groupId>
-			<artifactId>ead-tools</artifactId>
-			<version>2.0.1-SNAPSHOT</version>
-			<classifier>sources</classifier>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>es.e-ucm.ead</groupId>
-			<artifactId>ead-tools-gwt</artifactId>
-			<version>2.0.1-SNAPSHOT</version>
-			<classifier>sources</classifier>
-			<scope>provided</scope>
-		</dependency>
-
+        <!-- GLEANER -->
 		<dependency>
 			<groupId>es.e-ucm.gleaner</groupId>
 			<artifactId>gleaner-tracker-gwt</artifactId>
@@ -127,12 +127,31 @@
 			<classifier>sources</classifier>
 			<scope>provided</scope>
 		</dependency>
+        <!-- Box2D -->
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx-box2d-gwt</artifactId>
+            <version>${gdx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx-box2d</artifactId>
+            <version>${gdx.version}</version>
+            <classifier>sources</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx-box2d-gwt</artifactId>
+            <version>${gdx.version}</version>
+            <classifier>sources</classifier>
+            <scope>provided</scope>
+        </dependency>
 		<!-- Tween Engine -->
 		<dependency>
 			<groupId>aurelienribon</groupId>
-			<artifactId>tweenengine</artifactId>
+			<artifactId>tweenengine-api-sources</artifactId>
 			<version>1</version>
-			<classifier>sources</classifier>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

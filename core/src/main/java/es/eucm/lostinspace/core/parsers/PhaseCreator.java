@@ -6,14 +6,21 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 
-import es.eucm.ead.tools.xml.XMLNode;
 import es.eucm.lostinspace.core.LevelManager;
 import es.eucm.lostinspace.core.LostInSpace;
 import es.eucm.lostinspace.core.actions.AbstractAction;
-import es.eucm.lostinspace.core.actors.*;
+import es.eucm.lostinspace.core.actors.AbstractActor;
+import es.eucm.lostinspace.core.actors.ImageActor;
+import es.eucm.lostinspace.core.actors.LevelUp;
+import es.eucm.lostinspace.core.actors.Rock;
+import es.eucm.lostinspace.core.actors.Ship;
+import es.eucm.lostinspace.core.actors.Trigger;
+import es.eucm.lostinspace.core.actors.Wall;
+import es.eucm.lostinspace.core.actors.WormHole;
 import es.eucm.lostinspace.core.parsers.scripts.ScriptAction;
 import es.eucm.lostinspace.core.parsers.scripts.ScriptStep;
 import es.eucm.lostinspace.core.screens.PhaseScreen;
+import es.eucm.tools.xml.XMLNode;
 
 public class PhaseCreator extends Parser {
 

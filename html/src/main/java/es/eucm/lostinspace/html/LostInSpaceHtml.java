@@ -5,10 +5,10 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
 
-import es.eucm.ead.tools.gwt.xml.GwtXMLParser;
 import es.eucm.gleaner.tracker.GwtTracker;
 import es.eucm.lostinspace.core.LostInSpace;
 import es.eucm.lostinspace.core.screens.PhaseScreen;
+import es.eucm.tools.xml.GwtXMLParser;
 
 public class LostInSpaceHtml extends GwtApplication {
 	@Override

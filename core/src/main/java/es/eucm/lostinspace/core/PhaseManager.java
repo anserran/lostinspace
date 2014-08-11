@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
-import es.eucm.ead.tools.xml.XMLNode;
+
 import es.eucm.lostinspace.core.actions.AbstractAction;
 import es.eucm.lostinspace.core.actors.AbstractActor;
 import es.eucm.lostinspace.core.actors.Rock;
@@ -15,6 +15,7 @@ import es.eucm.lostinspace.core.parsers.Parser;
 import es.eucm.lostinspace.core.parsers.PhaseCreator;
 import es.eucm.lostinspace.core.parsers.scripts.ScriptStep;
 import es.eucm.lostinspace.core.screens.PhaseScreen;
+import es.eucm.tools.xml.XMLNode;
 
 public class PhaseManager /* implements XMLParser.ErrorHandler */{
 
