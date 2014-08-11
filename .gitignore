@@ -2,3 +2,4 @@
 .settings
 android/libs/
 target/
+.idea
