@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Lost in Space XML results</title>
+	<script type="text/javascript" src=""></script>
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-6">
+				<h2>Users</h2>
+				<table id="users" class="table">
+					<tr>
+						<th>Session</th>
+						<th>Nickname</th>
+						<th>Phase</th>
+						<th>Score</th>
+						<th>Goals</th>
+					</tr>
+				</table>
+			</div>
+			<div class="col-xs-5">
+				<h2>XML Sent</h2>
+				<div class="container">
+					<div class="row">
+						<div class="span12">
+							<button class="btn btn-info show-all">All</button>
+							<button class="btn btn-success show-valid">Valid</button>
+							<button class="btn btn-danger show-invalid">Invalid</button>
+							<button class="btn show-allusers">All users</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="table-container col-xs-8">
+							<table id="xml_table" class="table small"></table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12"><a href="/" class="btn">Go back</a></div>
+		</div>
+	</div>
+	<div id="user-modal" class="modal hide fade">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3 class="username">User</h3>
+		</div>
+		<div class="modal-body">
+			<p><strong>Phase: </strong><span class="phase">None</span></p>
+			<p><strong>Score: </strong><span class="score">0</span></p>
+			<h4>Goals</h4>
+			<ul class="goals"></ul>
+		</div>
+		<div class="modal-footer">
+			<a href="#" class="btn btn-primary" data-dismiss="modal">Ok</a>
+		</div>
+	</div>
+	<script src="lib/jquery.min.js"></script>
+	<script src="lib/bootstrap.min.js"></script>
+	<script src="lib/underscore-min.js"></script>
+	<script src="lib/player.js"></script>
+	<script src="lib/goal.js"></script>
+	<script src="lib/phase.js"></script>
+	<script src="lib/attributeupdater.js"></script>
+	<script src="lib/traceanalyzer.js"></script>
+	<script src="setup.js"></script>
+	<script src="main.js"></script>
+</body>
+</html>

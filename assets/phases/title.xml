@@ -48,7 +48,6 @@
         </actions>
     </ship>
     <img n="start" i="hud.png" x="6" y="4" w="4" h="1" tx="6" tw="4" th="1"/>
-	<img n="continue" i="hud.png" x="6" y="3" w="4" h="1" tx="10" tw="4" th="1"/>
     <img i="logo.png" x="11" y="1" w="4" h="2" tw="2" th="1"/>
     <img i="title.png" x="1" y="6" w="14" h="2" tw="14" th="2"/>
     <img i="xmledition.png" x="12" y="5" w="3" h="1" tw="3" th="1"/>

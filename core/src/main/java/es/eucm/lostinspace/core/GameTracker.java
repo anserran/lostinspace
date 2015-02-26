@@ -24,7 +24,7 @@ public class GameTracker {
 	/** Start tracking */
 	public void startTracking () {
 		String trackData[] = Gdx.files.internal("track.txt").readString().split(";");
-		tracker.setAuthToken("anonymous");
+        tracker.setAuthorization("a:");
 		tracker.setServerURL(trackData[0]);
 		tracker.startTracking(trackData[1]);
 		startGame();

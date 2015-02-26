@@ -3,11 +3,12 @@
     <inherits name="com.badlogic.gdx.physics.box2d.box2d-gwt"/>
 	<inherits name="aurelienribon.tweenengine"/>
 	<inherits name="es.eucm.tools.xml"/>
-	<inherits name="es.eucm.gleaner.Tracker"/>
+	<inherits name="es.eucm.gleaner.tracker"/>
 
 	<source path='core'/>
 	<source path='html'/>
 	<public path="resources" />
+<!--    <set-property name="user.agent" value="safari" /> -->
 
 	<entry-point class='es.eucm.lostinspace.html.LostInSpaceHtml'/>
 	<set-configuration-property name="gdx.assetpath" value="assets" />

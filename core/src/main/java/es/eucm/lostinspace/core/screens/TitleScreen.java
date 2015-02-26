@@ -59,8 +59,8 @@ public class TitleScreen implements Screen {
 				return false;
 			}
 		});
-		// Start button
-		ImageActor continueButton = (ImageActor) stage.getRoot().findActor(
+		// Continue button
+		/*ImageActor continueButton = (ImageActor) stage.getRoot().findActor(
 				"continue");
 		continueButton.setHoverEffect(true);
 		continueButton.addListener(new InputListener() {
@@ -70,7 +70,7 @@ public class TitleScreen implements Screen {
 				game.continueGame();
 				return false;
 			}
-		});
+		});*/
 	}
 
 	@Override

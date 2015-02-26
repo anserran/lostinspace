@@ -68,7 +68,7 @@ public class PhaseScreen implements Screen {
 
 	public static XmlPrettifier xmlPrettifier = new XmlPrettifier(50);
 
-	public static boolean debug = true;
+	public static boolean debug = false;
 
 	public static AssetManager assetManager;
 

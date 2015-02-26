@@ -1,0 +1,52 @@
+.small {
+	font-size: 12px;
+}
+
+.small pre {
+	width: 400px;
+}
+
+.row-invalid {
+	background-color: #FF7777;
+}
+
+.row-valid {
+	background-color: #DDFFDD;
+}
+
+.show-invalid .row-valid {
+	display: none;
+}
+
+.show-valid .row-invalid {
+	display: none;
+}
+
+.table-container {
+	height: 800px;
+	overflow: scroll;
+}
+
+.gone {
+	display: none;
+}
+
+.semi-transparent {
+	opacity:0.3;
+	filter:alpha(opacity=30);
+}
+
+.goals li {
+	background: url('img/wrong.png') no-repeat left center;
+	list-style: none;
+	margin: 0;
+	background-color: #FFD8D8;
+	margin-bottom: 20px;
+	padding: 10px 25px;
+	border-radius: 5px;
+}
+
+.goals .correct {
+	background-image: url('img/ok.png');
+	background-color: #EFEFFF;
+}

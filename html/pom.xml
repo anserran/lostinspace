@@ -120,13 +120,6 @@
 			<classifier>sources</classifier>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>es.e-ucm.gleaner</groupId>
-			<artifactId>gleaner-model</artifactId>
-			<version>0.2-SNAPSHOT</version>
-			<classifier>sources</classifier>
-			<scope>provided</scope>
-		</dependency>
         <!-- Box2D -->
         <dependency>
             <groupId>com.badlogicgames.gdx</groupId>
@@ -175,6 +168,8 @@
 				<configuration>
 					<webappDirectory>${project.build.directory}/webapp</webappDirectory>
 					<runTarget>index.html</runTarget>
+                    <!-- <draftCompile>true</draftCompile>
+                    <style>DETAILED</style>-->
 				</configuration>
 				<executions>
 					<execution>
