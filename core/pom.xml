@@ -27,7 +27,7 @@
 		<dependency>
 			<groupId>es.e-ucm.gleaner</groupId>
 			<artifactId>gleaner-tracker</artifactId>
-			<version>0.2-SNAPSHOT</version>
+			<version>0.3-SNAPSHOT</version>
 		</dependency>
         <dependency>
             <groupId>es.e-ucm.tools.xml</groupId>
