@@ -90,33 +90,33 @@
 		<dependency>
 			<groupId>es.e-ucm.gleaner</groupId>
 			<artifactId>gleaner-tracker-gwt</artifactId>
-			<version>0.2-SNAPSHOT</version>
+			<version>0.3-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>es.e-ucm.gleaner</groupId>
 			<artifactId>gleaner-tracker-gwt</artifactId>
-			<version>0.2-SNAPSHOT</version>
+			<version>0.3-SNAPSHOT</version>
 			<classifier>sources</classifier>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>es.e-ucm.gleaner</groupId>
 			<artifactId>gleaner-tracker</artifactId>
-			<version>0.2-SNAPSHOT</version>
+			<version>0.3-SNAPSHOT</version>
 			<classifier>sources</classifier>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>es.e-ucm.gleaner</groupId>
 			<artifactId>gleaner-network-gwt</artifactId>
-			<version>0.2-SNAPSHOT</version>
+			<version>0.3-SNAPSHOT</version>
 			<classifier>sources</classifier>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>es.e-ucm.gleaner</groupId>
 			<artifactId>gleaner-network</artifactId>
-			<version>0.2-SNAPSHOT</version>
+			<version>0.3-SNAPSHOT</version>
 			<classifier>sources</classifier>
 			<scope>provided</scope>
 		</dependency>

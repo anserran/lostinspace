@@ -74,6 +74,7 @@
         <profile>
             <id>html</id>
             <modules>
+                <module>core</module>
                 <module>html</module>
             </modules>
         </profile>
