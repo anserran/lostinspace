@@ -37,9 +37,6 @@ public class LostInSpace extends Game {
 
     @Override
     public void create() {
-        if(credentials.size > 1) {
-            gleanerTracker.setAuthorization("Bearer " + credentials.get(1));
-        }
         Gdx.gl.glClearColor(0.65f, 0.65f, 0.67f, 1.0f);
         phaseManager = new PhaseManager();
         levelManager = new LevelManager();
