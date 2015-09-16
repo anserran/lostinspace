@@ -35,7 +35,11 @@ public class GameTracker {
      */
     public void startTracking() {
         String trackData[] = Gdx.files.internal("track.txt").readString().split(";");
-        tracker.setAuthorization2("a:");
+        if(LostInSpace.credentials.size > 1) {
+            tracker.setAuthorization("Bearer " + LostInSpace.credentials.get(1));
+        } else {
+            tracker.setAuthorization("a:");
+        }
         tracker.setServerURL(trackData[0]);
         tracker.startTracking(trackData[1]);
         startGame();
