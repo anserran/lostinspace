@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>GameServer</title>
+        <style>
+            fieldset {
+                width: 40em;
+            }
+
+            ul {
+                list-style-type: none;
+            }
+
+            li {
+                height: 2em;
+            }
+
+            input {
+                position: absolute;
+                left: 15em;
+                width: 25em;
+            }
+        </style>
+	</head>
+	<body>
+	    <h1>Setting up a new tracked version of LostInSpace</h1>
+        <form method="post">
+            <fieldset>
+                <ul>
+                <li>
+                    <label for="authKey">Authorization key</label>
+                    <input name="authKey" id="authKey"/>
+                </li>
+                <li>
+                    <label for="serverUrl">Server URL</label>
+                    <input name="serverUrl" id="serverUrl"/>
+                </li>
+                <li>
+                    <label for="trackCode">Tracking code</label>
+                    <input name="trackCode" id="trackCode"/>
+                </li>
+                <li><button type="submit">Send</button></li>
+                </ul>
+            </fieldset>
+        </form>
+    </body>
+</html>

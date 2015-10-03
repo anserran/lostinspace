@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+    version="2.5">
+
+    <servlet>
+        <servlet-name>setup</servlet-name>
+        <servlet-class>es.eucm.rage.gameserver.Server</servlet-class>
+        <init-param>
+            <param-name>authKey</param-name>
+            <param-value>testkey</param-value> <!-- authenticates 'create game' requests -->
+        </init-param>
+        <init-param>
+            <param-name>gameSource</param-name>
+            <param-value>html/target/webapp</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>setup</servlet-name>
+        <url-pattern>/setup</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>default</servlet-name>
+        <servlet-class>org.eclipse.jetty.servlet.DefaultServlet</servlet-class>
+        <init-param>
+            <param-name>dirAllowed</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+</web-app>
