@@ -25,12 +25,10 @@ RUN mkdir xt \
   && cd ${WORK_DIR}
 
 # get (others) dependencies sorted out, and compile everything
-RUN mvn install -P html,-default \
-  && mkdir games \
-  && cp -r target/webapp games/lostinspace
+RUN mvn install -P html,-default
 
 # expose & run
 EXPOSE 9090
-CMD [ "mvn", "-Djetty.http.port=9999", "install", "-P", "html,jetty" ]
+CMD [ "mvn", "-Djetty.port=9999", "install", "-P", "html,jetty" ]
 
 # access via ip:9090/setup
