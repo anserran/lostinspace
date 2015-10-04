@@ -1,6 +1,6 @@
 FROM maven
 
-ENV REPO_URL="https://github.com/manuel-freire/lostinspace" \
+ENV REPO_URL="https://github.com/e-ucm/lostinspace" \
     REPO_TAG="master" \
     USER_NAME="user" \
     WORK_DIR="/app"
