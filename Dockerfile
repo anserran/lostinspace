@@ -29,6 +29,6 @@ RUN mvn install -P html,-default
 
 # expose & run
 EXPOSE 9090
-CMD [ "mvn", "-Djetty.port=9999", "install", "-P", "html,jetty" ]
+CMD [ "mvn", "-Djetty.port=9090", "install", "-P", "html,jetty" ]
 
 # access via ip:9090/setup
