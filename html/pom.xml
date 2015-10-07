@@ -90,33 +90,33 @@
 		<dependency>
 			<groupId>es.e-ucm.gleaner</groupId>
 			<artifactId>gleaner-tracker-gwt</artifactId>
-			<version>0.2-SNAPSHOT</version>
+			<version>0.4-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>es.e-ucm.gleaner</groupId>
 			<artifactId>gleaner-tracker-gwt</artifactId>
-			<version>0.2-SNAPSHOT</version>
+			<version>0.4-SNAPSHOT</version>
 			<classifier>sources</classifier>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>es.e-ucm.gleaner</groupId>
 			<artifactId>gleaner-tracker</artifactId>
-			<version>0.2-SNAPSHOT</version>
+			<version>0.4-SNAPSHOT</version>
 			<classifier>sources</classifier>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>es.e-ucm.gleaner</groupId>
 			<artifactId>gleaner-network-gwt</artifactId>
-			<version>0.2-SNAPSHOT</version>
+			<version>0.4-SNAPSHOT</version>
 			<classifier>sources</classifier>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>es.e-ucm.gleaner</groupId>
 			<artifactId>gleaner-network</artifactId>
-			<version>0.2-SNAPSHOT</version>
+			<version>0.4-SNAPSHOT</version>
 			<classifier>sources</classifier>
 			<scope>provided</scope>
 		</dependency>
@@ -186,25 +186,6 @@
 				<configuration>
 					<webappDirectory>${project.build.directory}/webapp</webappDirectory>
 				</configuration>
-			</plugin>
-
-			<!-- allows testing of HTML backend via: mvn integration-test -Phtml -->
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>8.0.0.v20110901</version>
-				<configuration>
-					<webApp>${project.basedir}/target/webapp</webApp>
-				</configuration>
-				<executions>
-					<execution>
-						<id>test-html</id>
-						<phase>integration-test</phase>
-						<goals>
-							<goal>run-exploded</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>

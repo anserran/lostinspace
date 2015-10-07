@@ -74,7 +74,9 @@
         <profile>
             <id>html</id>
             <modules>
+                <module>core</module>
                 <module>html</module>
+                <module>gameserver</module>
             </modules>
         </profile>
         <profile>
