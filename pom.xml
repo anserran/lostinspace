@@ -9,7 +9,7 @@
     <name>LostInSpace Parent</name>
 
     <properties>
-        <gdx.version>1.5.4</gdx.version>
+        <gdx.version>1.7.0</gdx.version>
         <android.version>4.1.1.4</android.version>
         <android.maven.version>3.6.0</android.maven.version>
         <gwt.version>2.6.1</gwt.version>

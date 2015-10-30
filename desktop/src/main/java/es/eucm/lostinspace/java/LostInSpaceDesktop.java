@@ -3,7 +3,6 @@ package es.eucm.lostinspace.java;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
-import es.eucm.gleaner.tracker.JerseyTracker;
 import es.eucm.lostinspace.core.LostInSpace;
 import es.eucm.lostinspace.core.screens.PhaseScreen;
 import es.eucm.tools.xml.SaxXMLParser;
@@ -18,8 +17,6 @@ public class LostInSpaceDesktop {
 		PhaseScreen.xmlParser = new SaxXMLParser();
 		cfg.vSyncEnabled = false;
 		cfg.fullscreen = false;
-		// cfg.setFromDisplayMode(LwjglApplicationConfiguration.getDesktopDisplayMode());
-		LostInSpace.gleanerTracker = new JerseyTracker();
 		new LwjglApplication(new LostInSpace(), cfg);
 	}
 }

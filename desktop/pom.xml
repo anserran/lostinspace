@@ -53,12 +53,6 @@
             <artifactId>xml-java</artifactId>
             <version>1.0</version>
         </dependency>
-
-        <dependency>
-            <groupId>es.e-ucm.gleaner</groupId>
-            <artifactId>gleaner-tracker-java</artifactId>
-            <version>0.2-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 
     <build>
