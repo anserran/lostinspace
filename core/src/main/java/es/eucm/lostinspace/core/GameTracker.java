@@ -42,7 +42,7 @@ public class GameTracker {
 	 */
 	public void xml(String xml, boolean error) {
 		tracker.trace(XML, phaseManager.getCurrentPhaseId(),
-				(error ? XML_INVALID : XML_VALID), xml);
+				(error ? XML_INVALID : XML_VALID));
 		if (error) {
 			flush();
 		}
