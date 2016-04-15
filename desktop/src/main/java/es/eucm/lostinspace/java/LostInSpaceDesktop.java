@@ -10,7 +10,7 @@ import es.eucm.tools.xml.SaxXMLParser;
 public class LostInSpaceDesktop {
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-		cfg.title = "lostinspace";
+		cfg.title = "Lost In Space";
 		cfg.width = PhaseScreen.SQUARE_SIZE
 				* (PhaseScreen.CONSOLE_COLUMNS + PhaseScreen.GRID_COLUMNS);
 		cfg.height = PhaseScreen.SQUARE_SIZE * (PhaseScreen.GRID_ROWS);

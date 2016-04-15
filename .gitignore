@@ -3,3 +3,5 @@
 android/libs/
 target/
 .idea
+assets-raw/png
+.lastmodified

@@ -51,7 +51,7 @@
         <dependency>
             <groupId>es.e-ucm.tools.xml</groupId>
             <artifactId>xml-java</artifactId>
-            <version>1.0</version>
+            <version>${xml.tools}</version>
         </dependency>
     </dependencies>
 

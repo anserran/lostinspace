@@ -64,24 +64,24 @@
         <dependency>
             <groupId>es.e-ucm.tools.xml</groupId>
             <artifactId>xml</artifactId>
-            <version>1.0</version>
+            <version>${xml.tools}</version>
         </dependency>
         <dependency>
             <groupId>es.e-ucm.tools.xml</groupId>
             <artifactId>xml-gwt</artifactId>
-            <version>1.0</version>
+            <version>${xml.tools}</version>
         </dependency>
         <dependency>
             <groupId>es.e-ucm.tools.xml</groupId>
             <artifactId>xml-gwt</artifactId>
-            <version>1.0</version>
+            <version>${xml.tools}</version>
             <classifier>sources</classifier>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>es.e-ucm.tools.xml</groupId>
             <artifactId>xml</artifactId>
-            <version>1.0</version>
+            <version>${xml.tools}</version>
             <classifier>sources</classifier>
             <scope>provided</scope>
         </dependency>
